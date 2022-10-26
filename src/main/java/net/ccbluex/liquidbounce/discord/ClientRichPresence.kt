@@ -23,6 +23,13 @@ class ClientRichPresence : MinecraftInstance() {
 
     var showRichPresenceValue = true
 
+    var coldpvpcracked = "np.coldpvp.com"
+    var coldpvp = "coldpvp.com"
+    var hypixel = "hypixel.com"
+    var blocksmc = "blocksmc.com"
+    var blocksmcpremium = "premium.blocksmc.com"
+    var minebox = "mc.minebox.es"
+
     // IPC Client
     private var ipcClient: IPCClient? = null
 
@@ -91,8 +98,8 @@ class ClientRichPresence : MinecraftInstance() {
         builder.setStartTimestamp(timestamp)
 
         // Check assets contains logo and set logo
-        if (assets.containsKey("new"))
-            builder.setLargeImage(assets["new"], "build ${LiquidBounce.CLIENT_VERSION}")
+        if (assets.containsKey("idk"))
+            builder.setLargeImage(assets["idk"], "using version: ${LiquidBounce.CLIENT_VERSION}")
 
         val serverData = mc.currentServerData
 
@@ -100,11 +107,17 @@ class ClientRichPresence : MinecraftInstance() {
         builder.setDetails(if (Display.isActive()) (if (mc.isIntegratedServerRunning || serverData != null) "Playing" else "Idle...") else "AFK")
         builder.setState("Name: ${mc.session.username}")
 
-        if (mc.isIntegratedServerRunning || serverData != null) 
-            builder.setSmallImage(assets["astolfo"], "${if (mc.isIntegratedServerRunning || serverData == null) "Singleplayer" else serverData.serverIP} - Enabled ${LiquidBounce.moduleManager.modules.count { it.state }}/${LiquidBounce.moduleManager.modules.size}.")
-        else
-            builder.setSmallImage(assets["astolfo"], "Enabled ${LiquidBounce.moduleManager.modules.count { it.state }}/${LiquidBounce.moduleManager.modules.size}.")
-
+        if (serverData != null) {
+            if(mc.isIntegratedServerRunning) builder.setSmallImage(assets["playing"], "Playing on Singleplayer")
+            if(serverData.serverIP = coldpvp || serverData.serverIP = coldpvpcracked) builder.setSmallImage(assets["coldpvp"], "Playing on ColdPvP")
+            if(serverData.serverIP = hypixel) builder.setSmallImage(assets["hypixel"], "Playing on Hypixel")
+            if(serverData.serverIP = blocksmc || serverData.severIP = blocksmcpremium) builder.setSmallImage(assets["blocksmc"], "Playing on BlocksMC")
+            if(serverData.serverIP = mineplex) builder.setSmallImage(assets["mineplex"], "Playing on Mineplex")
+            if(serverData.serverIP = minebox) builder.setSmallImage(assets["minebox"], "Playing on MineBox")
+         else if(!serverData.serverIP = hypixel || !serverData.serverIP = coldpvp || !serverData.serverIP = coldpvpcracked || !serverData.serverIP = minebox || !serverData.serverIP = mineplex || !serverData.serverIP = blocksmc || || !serverData.serverIP = blocksmcpremium || mc.isIntegratedServerRunning) {
+            builder.setSmallImage(assets["playing"], "Playing on ${serverData.serverIP}")
+         }
+         
         // Check ipc client is connected and send rpc
         if (ipcClient?.status == PipeStatus.CONNECTED)
             ipcClient?.sendRichPresence(builder.build())
@@ -126,8 +139,13 @@ class ClientRichPresence : MinecraftInstance() {
     }
 
     private fun loadConfiguration() {
-        appID = 874149528486445106L
-        assets["new"] = "new"
-        assets["astolfo"] = "astolfo"
+        appID = 814702169080987649L
+        assets["coldpvp"] = "coldpvp"
+        assets["hypixel"] = "hypixel"
+        assets["blocksmc"] = "blocksmc"
+        assets["minebox"] = "minebox"
+        assets["mineplex"] = "mineplex"
+        assets["idk"] = "idk"
+        assets["playing"] = "playing"
     }
 }
