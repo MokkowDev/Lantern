@@ -1122,8 +1122,8 @@ public class Fly extends Module {
         if (packet instanceof S08PacketPlayerPosLook) {
         /*	if (mode.equalsIgnoreCase("custom") && !customFlag && noFlyBeforeFlag.get()) {
         *	     customFlag = true;
-         */   }
-            
+         *  }
+           */ 
             if (mode.equalsIgnoreCase("watchdog") && wdState == 3) {
                 wdState = 4;
                 if (fakeDmgValue.get() && mc.thePlayer != null)
