@@ -114,7 +114,7 @@ class ClientRichPresence : MinecraftInstance() {
             if(serverData.serverIP = blocksmc || serverData.severIP = blocksmcpremium) builder.setSmallImage(assets["blocksmc"], "Playing on BlocksMC")
             if(serverData.serverIP = mineplex) builder.setSmallImage(assets["mineplex"], "Playing on Mineplex")
             if(serverData.serverIP = minebox) builder.setSmallImage(assets["minebox"], "Playing on MineBox")
-         else if(!serverData.serverIP = hypixel || !serverData.serverIP = coldpvp || !serverData.serverIP = coldpvpcracked || !serverData.serverIP = minebox || !serverData.serverIP = mineplex || !serverData.serverIP = blocksmc || || !serverData.serverIP = blocksmcpremium || mc.isIntegratedServerRunning) {
+         } else if(!serverData.serverIP = hypixel || !serverData.serverIP = coldpvp || !serverData.serverIP = coldpvpcracked || !serverData.serverIP = minebox || !serverData.serverIP = mineplex || !serverData.serverIP = blocksmc || || !serverData.serverIP = blocksmcpremium || mc.isIntegratedServerRunning) {
             builder.setSmallImage(assets["playing"], "Playing on ${serverData.serverIP}")
          }
          
