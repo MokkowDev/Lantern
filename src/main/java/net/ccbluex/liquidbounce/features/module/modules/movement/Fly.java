@@ -572,8 +572,8 @@ public class Fly extends Module {
             case "watchdog2":
                 mc.timer.timerSpeed = 1.0f;
                 mc.thePlayer.motionY = 0;
-                if (mc.thePlayer.ticksExisted % 15 == 0) {
-                    double[] expectMoves = getMoves((double)4.0, (double)1.0);
+                if (mc.thePlayer.ticksExisted % 17 == 0) {
+                    double[] expectMoves = getMoves((double)4.0, (double)-1.0);
                     if (mc.theWorld.getCollidingBoundingBoxes(mc.thePlayer, mc.thePlayer.getEntityBoundingBox().offset(expectMoves[0], expectMoves[1], expectMoves[2]).expand(0, 0, 0)).isEmpty())
                         hClip(expectMoves[0], expectMoves[1], expectMoves[2]);
                 }
