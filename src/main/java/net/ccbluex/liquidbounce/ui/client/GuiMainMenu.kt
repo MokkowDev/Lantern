@@ -75,7 +75,7 @@ class GuiMainMenu : GuiScreen(), GuiYesNoCallback {
         Fonts.font40.drawStringWithShadow(creditInfo, width - 3F - Fonts.font40.getStringWidth(creditInfo), height - 12F, -1)
         if (useParallax) moveMouseEffect(mouseX, mouseY, 10F)
         GlStateManager.disableAlpha()
-        Fonts.fontLarge.drawStringWithShadow("Mossware", width / 2F, height / 2F - 90F, ColorUtils.rainbow(400000L).rgb)
+        Fonts.fontLarge.drawStringWithShadow("Mossware", width / 2F - 50F, height / 2F - 90F, ColorUtils.rainbow(400000L).rgb)
         // RenderUtils.drawImage2(bigLogo, width / 2F - 50F, height / 2F - 90F, 100, 100)
         GlStateManager.enableAlpha()
         renderBar(mouseX, mouseY, partialTicks)
