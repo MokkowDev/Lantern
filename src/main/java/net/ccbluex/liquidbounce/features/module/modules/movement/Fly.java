@@ -122,14 +122,15 @@ public class Fly extends Module {
     private final BoolValue groundSpoofOnlyMove = new BoolValue("GroundSpoof-OnlyMove", false, () -> modeValue.get().equalsIgnoreCase("custom") && groundSpoofValue.get());
     private final FloatValue ncpMotionValue = new FloatValue("NCPMotion", 0F, 0F, 1F, () -> modeValue.get().equalsIgnoreCase("ncp"));
 
-    // Custom
-    private final BoolValue toggleTimerValue = new BoolValue("Custom-UseTimer", true, () -> modeValue.get().equalsIgnoreCase("custom"));
-    private final FloatValue normalTimer = new FloatValue("Custom-Timer", 1F 0.1F, 10F, () -> modeValue.get().equalsIgnoreCase("custom") && toggleTimerValue.get());
-    private final FloatValue onMoveTimer = new FloatValue("Custom-OnMoveTimer", 1F 0.1F, 10F, () -> modeValue.get().equalsIgnoreCase("custom") && toggleTimerValue.get());
-    private final FloatValue customVclip = new FloatValue("Custom-VClip", 0F, -10F, 10F, () -> modeValue.get().equalsIgnoreCase("custom"));
-    private final BoolValue noMoveOnVclip = new BoolValue("Custom-NoMoveOnVclip", true, () -> modeValue.get().equalsIgnoreCase("custom"));
-    private final BoolValue noFlyBeforeFlag = new BoolValue("Custom-NoFlyBeforeFlag", true, () -> modeValue.get().equalsIgnoreCase("custom"));
-
+    /* Custom
+    * private final BoolValue toggleTimerValue = new BoolValue("Custom-UseTimer", true, () -> modeValue.get().equalsIgnoreCase("custom"));
+    * private final FloatValue normalTimer = new FloatValue("Custom-Timer", 1F 0.1F, 10F, () -> modeValue.get().equalsIgnoreCase("custom") && toggleTimerValue.get());
+    * private final FloatValue onMoveTimer = new FloatValue("Custom-OnMoveTimer", 1F 0.1F, 10F, () -> modeValue.get().equalsIgnoreCase("custom") && toggleTimerValue.get());
+    * private final FloatValue customVclip = new FloatValue("Custom-VClip", 0F, -10F, 10F, () -> modeValue.get().equalsIgnoreCase("custom"));
+    * private final BoolValue noMoveOnVclip = new BoolValue("Custom-NoMoveOnVclip", true, () -> modeValue.get().equalsIgnoreCase("custom"));
+    * private final BoolValue noFlyBeforeFlag = new BoolValue("Custom-NoFlyBeforeFlag", true, () -> modeValue.get().equalsIgnoreCase("custom"));
+    */
+    
     // Verus
     private final ListValue verusDmgModeValue = new ListValue("Verus-DamageMode", new String[]{"None", "Instant", "InstantC06", "Jump"}, "None", () -> modeValue.get().equalsIgnoreCase("verus"));
     private final ListValue verusBoostModeValue = new ListValue("Verus-BoostMode", new String[]{"Static", "Gradual"}, "Gradual", () -> modeValue.get().equalsIgnoreCase("verus") && !verusDmgModeValue.get().equalsIgnoreCase("none"));
@@ -320,14 +321,16 @@ public class Fly extends Module {
 
         switch (mode.toLowerCase()) {
         	case "custom":
-                if(customUseVclip.get()) {
-                   if(mc.thePlayer.onGround && !customFlag) {
-                       mc.thePlayer.setPosition(mc.thePlayer.posX, mc.thePlayer.posY + customVclip.get(), mc.thePlayer.posZ);
-                       mc.getNetHandler().addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + customVclip.get(), mc.thePlayer.posZ, true));
-                    }
-                 } else {
-                 	customFlag = true
-                 }
+            /*
+               * if(customUseVclip.get()) {
+                 *  if(mc.thePlayer.onGround && !customFlag) {
+                   *    mc.thePlayer.setPosition(mc.thePlayer.posX, mc.thePlayer.posY + customVclip.get(), mc.thePlayer.posZ);
+                   *    mc.getNetHandler().addToSendQueue(new C03PacketPlayer.C04PacketPlayerPosition(mc.thePlayer.posX, mc.thePlayer.posY + customVclip.get(), mc.thePlayer.posZ, true));
+                 *   }
+             *    } else {
+                 *	customFlag = true
+             *    }
+             */
                 break;
             case "ncp":
                 mc.thePlayer.motionY = -ncpMotionValue.get();
@@ -503,23 +506,24 @@ public class Fly extends Module {
 
         switch (modeValue.get().toLowerCase()) {
         	case "custom":
-                	if(toggleTimerValue.get()) {
-                	    if(MovementUtils.isMoving()) {
-                            mc.timer.timerSpeed = customMoveTimer.get()
-                        } else {
-                        	mc.timer.timerSpeed = customTimer.get();
-                        }
-                     }
-                    if(customFlag) {
-                        mc.thePlayer.motionY = vanillaMotionYValue.get();
-                        mc.thePlayer.motionX = 0;
-                        mc.thePlayer.motionZ = 0;
-                        if (mc.gameSettings.keyBindJump.isKeyDown())
-                             mc.thePlayer.motionY += vanillaVSpeed;
-                        if (mc.gameSettings.keyBindSneak.isKeyDown())
-                             mc.thePlayer.motionY -= vanillaVSpeed;
-                        MovementUtils.strafe(vanillaSpeed);
-                    }
+                /*	if(toggleTimerValue.get()) {
+                *	    if(MovementUtils.isMoving()) {
+                  *          mc.timer.timerSpeed = customMoveTimer.get()
+                 *       } else {
+                  *      	mc.timer.timerSpeed = customTimer.get();
+                 *       }
+                *     }
+                *    if(customFlag) {
+                  *      mc.thePlayer.motionY = vanillaMotionYValue.get();
+                  *      mc.thePlayer.motionX = 0;
+                  *      mc.thePlayer.motionZ = 0;
+                 *       if (mc.gameSettings.keyBindJump.isKeyDown())
+                  *           mc.thePlayer.motionY += vanillaVSpeed;
+                  *      if (mc.gameSettings.keyBindSneak.isKeyDown())
+                  *           mc.thePlayer.motionY -= vanillaVSpeed;
+                   *     MovementUtils.strafe(vanillaSpeed);
+                *    }
+                */
                 break;
             case "motion":
                 mc.thePlayer.capabilities.isFlying = false;
@@ -1116,9 +1120,9 @@ public class Fly extends Module {
             event.cancelEvent();
 
         if (packet instanceof S08PacketPlayerPosLook) {
-        	if (mode.equalsIgnoreCase("custom") && !customFlag && noFlyBeforeFlag.get()) {
-        	     customFlag = true;
-            }
+        /*	if (mode.equalsIgnoreCase("custom") && !customFlag && noFlyBeforeFlag.get()) {
+        *	     customFlag = true;
+         */   }
             
             if (mode.equalsIgnoreCase("watchdog") && wdState == 3) {
                 wdState = 4;
@@ -1241,7 +1245,7 @@ public class Fly extends Module {
                 event.zeroXZ();
                 break;
             case "custom":
-                if(customUseVclip.get() && !isVclip && noMoveOnVclip.get()) event.zeroXZ();
+               // if(customUseVclip.get() && !isVclip && noMoveOnVclip.get()) event.zeroXZ();
                 break;
             case "veruslowhop":
                 if (!mc.thePlayer.isInWeb && !mc.thePlayer.isInLava() && !mc.thePlayer.isInWater() && !mc.thePlayer.isOnLadder() && !mc.gameSettings.keyBindJump.isKeyDown() && mc.thePlayer.ridingEntity == null) {
