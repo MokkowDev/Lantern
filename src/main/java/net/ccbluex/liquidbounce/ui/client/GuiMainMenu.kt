@@ -13,6 +13,7 @@ import net.ccbluex.liquidbounce.utils.ClientUtils
 import net.ccbluex.liquidbounce.utils.misc.MiscUtils
 import net.ccbluex.liquidbounce.utils.render.RenderUtils
 import net.ccbluex.liquidbounce.utils.render.EaseUtils
+import net.ccbluex.liquidbounce.utils.render.ColorUtils
 import net.minecraft.client.gui.*
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.texture.DynamicTexture
@@ -70,11 +71,12 @@ class GuiMainMenu : GuiScreen(), GuiYesNoCallback {
         GL11.glPushMatrix()
         renderSwitchButton()
         renderDarkModeButton()
-        Fonts.font40.drawStringWithShadow("${LiquidBounce.CLIENT_NAME} build ${LiquidBounce.CLIENT_VERSION} | lbpro.ml", 2F, height - 12F, -1)
+        Fonts.font40.drawStringWithShadow("You are using test version.", 2F, height - 12F, -1)
         Fonts.font40.drawStringWithShadow(creditInfo, width - 3F - Fonts.font40.getStringWidth(creditInfo), height - 12F, -1)
         if (useParallax) moveMouseEffect(mouseX, mouseY, 10F)
         GlStateManager.disableAlpha()
-        RenderUtils.drawImage2(bigLogo, width / 2F - 50F, height / 2F - 90F, 100, 100)
+        Fonts.fontLarge.drawStringWithShadow("Mossware", width / 2F, height / 2F - 90F, ColorUtils.rainbow(400000L))
+        // RenderUtils.drawImage2(bigLogo, width / 2F - 50F, height / 2F - 90F, 100, 100)
         GlStateManager.enableAlpha()
         renderBar(mouseX, mouseY, partialTicks)
         GL11.glPopMatrix()
@@ -186,7 +188,7 @@ class GuiMainMenu : GuiScreen(), GuiYesNoCallback {
         val staticX = width / 2F - 120F
         val staticY = height / 2F + 20F
 
-        RenderUtils.drawRoundedRect(staticX, staticY, staticX + 240F, staticY + 20F, 10F, (if (LiquidBounce.darkMode) Color(0, 0, 0, 100) else Color(255, 255, 255, 100)).rgb)
+        RenderUtils.drawRect(staticX, staticY, staticX + 240F, staticY + 20F, (if (LiquidBounce.darkMode) Color(0, 0, 0, 100) else Color(255, 255, 255, 100)).rgb)
         
         var index: Int = 0
         var shouldAnimate = false
@@ -228,9 +230,7 @@ class GuiMainMenu : GuiScreen(), GuiYesNoCallback {
 
         if (displayString != null)
             Fonts.font35.drawCenteredString(displayString!!, width / 2F, staticY + 30F, -1)
-        else
-            Fonts.font35.drawCenteredString("Thank you.", width / 2F, staticY + 30F, -1)
-
+            
         if (shouldAnimate) {
             if (fade == 0F)
                 slideX = moveX
@@ -249,7 +249,7 @@ class GuiMainMenu : GuiScreen(), GuiYesNoCallback {
         }
 
         if (fade != 0F)
-            RenderUtils.drawRoundedRect(slideX, staticY, slideX + 40F, staticY + 20F, 10F, (if (LiquidBounce.darkMode) Color(0F, 0F, 0F, fade / 100F * 0.6F) else Color(1F, 1F, 1F, fade / 100F * 0.6F)).rgb)
+            RenderUtils.drawRect(slideX, staticY, slideX + 40F, staticY + 20F, (if (LiquidBounce.darkMode) Color(0F, 0F, 0F, fade / 100F * 0.6F) else Color(1F, 1F, 1F, fade / 100F * 0.6F)).rgb)
 
         index = 0
         GlStateManager.disableAlpha()
