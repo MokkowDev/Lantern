@@ -102,11 +102,12 @@ class ClientRichPresence : MinecraftInstance() {
 
         if (serverData != null) {
             if(mc.isIntegratedServerRunning) builder.setSmallImage(assets["playing"], "Playing on Singleplayer")
-            if(serverData.serverIP = "np.coldpvp.com" || serverData.serverIP = "coldpvp.com") builder.setSmallImage(assets["coldpvp"], "Playing on ColdPvP")
-            if(serverData.serverIP = "hypixel.net") builder.setSmallImage(assets["hypixel"], "Playing on Hypixel")
-            if(serverData.serverIP = "blocksmc.com" || serverData.serverIP = "premium.blocksmc.com") builder.setSmallImage(assets["blocksmc"], "Playing on BlocksMC")
-            if(serverData.serverIP = "mc.minebox.es") builder.setSmallImage(assets["minebox"], "Playing on MineBox")
-            if(serverData!!.serverIP != "hypixel.net" || serverData!!.serverIP != "coldpvp.com" || serverData!!.serverIP != "np.coldpvp.com" || serverData!!.serverIP != "mc.minebox.es" || serverData!!.serverIP != "blocksmc.com" | serverData!!.serverIP != "premium.blocksmc.com") builder.setSmallImage(assets["playing"], "Playing on ${serverData.serverIP}")
+            if(serverData.serverIP == "np.coldpvp.com" || serverData.serverIP == "coldpvp.com") builder.setSmallImage(assets["coldpvp"], "Playing on ColdPvP")
+            if(serverData.serverIP == "hypixel.net") builder.setSmallImage(assets["hypixel"], "Playing on Hypixel")
+            if(serverData.serverIP == "blocksmc.com" || serverData.serverIP == "premium.blocksmc.com") builder.setSmallImage(assets["blocksmc"], "Playing on BlocksMC")
+            if(serverData.serverIP == "mc.minebox.es") builder.setSmallImage(assets["minebox"], "Playing on MineBox")
+            if(serverData!!.serverIP != "hypixel.net" || serverData!!.serverIP != "coldpvp.com" || serverData!!.serverIP != "np.coldpvp.com" || serverData!!.serverIP != "mc.minebox.es" || serverData!!.serverIP != "blocksmc.com" || serverData!!.serverIP != "premium.blocksmc.com") 
+                builder.setSmallImage(assets["playing"], "Playing on ${serverData.serverIP}")
          }
          
         // Check ipc client is connected and send rpc
