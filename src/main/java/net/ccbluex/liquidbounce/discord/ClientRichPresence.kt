@@ -23,13 +23,6 @@ class ClientRichPresence : MinecraftInstance() {
 
     var showRichPresenceValue = true
 
-    var coldpvpcracked = "np.coldpvp.com"
-    var coldpvp = "coldpvp.com"
-    var hypixel = "hypixel.com"
-    var blocksmc = "blocksmc.com"
-    var blocksmcpremium = "premium.blocksmc.com"
-    var minebox = "mc.minebox.es"
-
     // IPC Client
     private var ipcClient: IPCClient? = null
 
@@ -107,18 +100,18 @@ class ClientRichPresence : MinecraftInstance() {
         builder.setDetails(if (Display.isActive()) (if (mc.isIntegratedServerRunning || serverData != null) "Playing" else "Idle...") else "AFK")
         builder.setState("Name: ${mc.session.username}")
 
-        if (serverData != null) 
+        if (serverData != null) {
             if(mc.isIntegratedServerRunning) builder.setSmallImage(assets["playing"], "Playing on Singleplayer")
-            if(serverData.serverIP = coldpvp || serverData.serverIP = coldpvpcracked) builder.setSmallImage(assets["coldpvp"], "Playing on ColdPvP")
-            if(serverData.serverIP = hypixel) builder.setSmallImage(assets["hypixel"], "Playing on Hypixel")
-            if(serverData.serverIP = blocksmc || serverData.serverIP = blocksmcpremium) builder.setSmallImage(assets["blocksmc"], "Playing on BlocksMC")
-            if(serverData.serverIP = minebox) builder.setSmallImage(assets["minebox"], "Playing on MineBox")
-         else if(!serverData.serverIP = hypixel || !serverData.serverIP = coldpvp || !serverData.serverIP = coldpvpcracked || !serverData.serverIP = minebox || !serverData.serverIP = blocksmc || !serverData.serverIP = blocksmcpremium || !mc.isIntegratedServerRunning) 
+            if(serverData.serverIP = "np.coldpvp.com || serverData.serverIP = "coldpvp.com") builder.setSmallImage(assets["coldpvp"], "Playing on ColdPvP")
+            if(serverData.serverIP = "hypixel.net") builder.setSmallImage(assets["hypixel"], "Playing on Hypixel")
+            if(serverData.serverIP = "blocksmc.com" || serverData.serverIP = "premium.blocksmc.com") builder.setSmallImage(assets["blocksmc"], "Playing on BlocksMC")
+            if(serverData.serverIP = "mc.minebox.es") builder.setSmallImage(assets["minebox"], "Playing on MineBox")
+         } else if(serverData.serverIP != "hypixel.net" || serverData.serverIP != "coldpvp.com" || serverData.serverIP != "np.coldpvp.com" || serverData.serverIP != "mc.minebox.es" || serverData.serverIP != "blocksmc.com" | serverData.serverIP != "premium.blocksmc.com") {
             builder.setSmallImage(assets["playing"], "Playing on ${serverData.serverIP}")
+         }
          
         // Check ipc client is connected and send rpc
-        if (ipcClient?.status == PipeStatus.CONNECTED)
-            ipcClient?.sendRichPresence(builder.build())
+        if (ipcClient?.status == PipeStatus.CONNECTED) ipcClient?.sendRichPresence(builder.build())
     }
 
     /**
