@@ -124,8 +124,8 @@ public class Fly extends Module {
 
     // Custom
     private final BoolValue toggleTimerValue = new BoolValue("Custom-UseTimer", true, () -> modeValue.get().equalsIgnoreCase("custom"));
-    private final FloatValue normalTimer = FloatValue("Custom-Timer", 1F 0.1F, 10F, () -> modeValue.get().equalsIgnoreCase("custom") && toggleTimerValue.get());
-    private final FloatValue onMoveTimer = FloatValue("Custom-OnMoveTimer", 1F 0.1F, 10F, () -> modeValue.get().equalsIgnoreCase("custom") && toggleTimerValue.get());
+    private final FloatValue normalTimer = new FloatValue("Custom-Timer", 1F 0.1F, 10F, () -> modeValue.get().equalsIgnoreCase("custom") && toggleTimerValue.get());
+    private final FloatValue onMoveTimer = new FloatValue("Custom-OnMoveTimer", 1F 0.1F, 10F, () -> modeValue.get().equalsIgnoreCase("custom") && toggleTimerValue.get());
     private final FloatValue customVclip = new FloatValue("Custom-VClip", 0F, -10F, 10F, () -> modeValue.get().equalsIgnoreCase("custom"));
     private final BoolValue noMoveOnVclip = new BoolValue("Custom-NoMoveOnVclip", true, () -> modeValue.get().equalsIgnoreCase("custom"));
     private final BoolValue noFlyBeforeFlag = new BoolValue("Custom-NoFlyBeforeFlag", true, () -> modeValue.get().equalsIgnoreCase("custom"));
