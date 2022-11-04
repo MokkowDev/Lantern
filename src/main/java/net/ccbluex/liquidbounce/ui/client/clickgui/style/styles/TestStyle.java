@@ -60,7 +60,8 @@ public class TestStyle extends Style {
     @Override
     public void drawButtonElement(int mouseX, int mouseY, ButtonElement buttonElement) {
         // Gui.drawRect(buttonElement.getX() - 1, buttonElement.getY() - 1, buttonElement.getX() + buttonElement.getWidth() + 1, buttonElement.getY() + buttonElement.getHeight() + 1, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE ? new Color(20,20,20) : new Color(40,40,40), buttonElement.hoverTime).getRGB());
-        RenderUtils.drawRoundedRect((float) buttonElement.getX() - 1, (float) buttonElement.getY() - 1, (float) buttonElement.getX() + buttonElement.getWidth() + 1 (float) buttonElement.getY() + buttonElement.getHeight() + 1, 1.6F, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE ? new Color(255,255,255) : new Color(200,200,200), buttonElement.hoverTime).getRGB());
+        RenderUtils.drawRoundedRect((float) buttonElement.getX() - 1, (float) buttonElement.getY() - 1, (float) buttonElement.getX() + buttonElement.getWidth() + 1, (float) buttomElement.getY() + buttonElement.getHeight() + 1, 1.6F, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE ? new Color(255,255,255) : new Color(200,200,200), buttonElement.hoverTime).getRGB());
+        // RenderUtils.drawRoundedRect((float) buttonElement.getX() - 1, (float) buttonElement.getY() - 1, (float) buttonElement.getX() + buttonElement.getWidth() + 1 (float) buttonElement.getY() + buttonElement.getHeight() + 1, 1.6F, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE ? new Color(255,255,255) : new Color(200,200,200), buttonElement.hoverTime).getRGB());
              
         GlStateManager.resetColor();
 
@@ -78,7 +79,7 @@ public class TestStyle extends Style {
         final List<Value<?>> moduleValues = moduleElement.getModule().getValues();
 
         if(!moduleValues.isEmpty()) {
-            Fonts.fontTahoma30.drawString(">", moduleElement.getX() + moduleElement.getWidth() - 8, moduleElement.getY() + 5, RenderUtils.SkyRainbow(2, 0.9f, 1.0f));
+            Fonts.fontTahoma30.drawString(">", moduleElement.getX() + moduleElement.getWidth() - 8, moduleElement.getY() + 5, RenderUtils.SkyRainbow(0, 0.9f, 1.0f));
 
             if(moduleElement.isShowSettings()) {
                 if(moduleElement.getSettingsWidth() > 0F && moduleElement.slowlySettingsYPos > moduleElement.getY() + 6)
