@@ -16,8 +16,7 @@ import net.ccbluex.liquidbounce.utils.block.BlockUtils.canBeClicked
 import net.ccbluex.liquidbounce.utils.block.BlockUtils.getBlock
 import net.ccbluex.liquidbounce.utils.render.ColorUtils
 import net.ccbluex.liquidbounce.utils.render.RenderUtils
-import net.ccbluex.liquidbounce.value.BoolValue
-import net.ccbluex.liquidbounce.value.IntegerValue
+import net.ccbluex.liquidbounce.value.*
 import net.minecraft.block.Block
 import net.minecraft.client.gui.ScaledResolution
 import net.minecraft.client.renderer.GlStateManager
@@ -51,9 +50,10 @@ class BlockOverlay : Module() {
         val partialTicks = event.partialTicks
         val rainbowMode = rainbowValue.get()
         val color = when {
-           mode.equals("Rainbow", ignoreCase = true) -> ColorUtils.rainbow(0.4F)
-           mode.equals("SkyRainbow", ignoreCase = true) -> RenderUtils.skyRainbow(0, 0.9f, 1.0f);
-           mode.equals("Custom", ignoreCase = true) -> Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get(), colorAlphaValue.get())
+           rainbowMode.equals("Rainbow", ignoreCase = true) -> ColorUtils.rainbow(0.4F)
+           rainbowMode.equals("SkyRainbow", ignoreCase = true) -> RenderUtils.skyRainbow(0, 0.9f, 1.0f);
+        } else if(rainbowMode.equals("Custom", ignoreCase = true)) {
+           Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get(), colorAlphaValue.get())
         }
         
         GlStateManager.enableBlend()
