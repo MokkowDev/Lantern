@@ -28,11 +28,12 @@ import org.lwjgl.input.Mouse;
 import java.awt.*;
 import java.math.BigDecimal;
 import java.util.List;
+import org.lwjgl.input.Keyboard;
 
 public class TestStyle extends Style {
 
     private boolean mouseDown;
-    
+    public int dWheel;
     private boolean rightMouseDown;
 
     @Override
@@ -292,7 +293,12 @@ public class TestStyle extends Style {
 
         if (mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + 3) {
             dWheel = Mouse.getDWheel();
-            if (Mouse.hasWheel() && dWheel != 0) {
+            if(Keyboard.KEY_UP) {
+            	 dWheel = Mouse.getDWheel() + 1;
+            } else if(Keyboard.KEY_DOWN) {
+             	dWheel = Mouse.getDWheel() - 1;
+            }
+            if (dWheel != 0) {
                 if (dWheel > 0)
                     return Math.min(value + (inte ? 1F : 0.01F), max);
                 if (dWheel < 0)
