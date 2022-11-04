@@ -52,7 +52,7 @@ class BlockOverlay : Module() {
         val rainbowMode = rainbowValue.get()
         val color = when {
            mode.equals("Rainbow", ignoreCase = true) -> ColorUtils.rainbow(0.4F)
-           mode.equals("SkyRainbow", ignoreCase = true) -> RenderUtils.SkyRainbow(0, 0.9f, 1.0f);
+           mode.equals("SkyRainbow", ignoreCase = true) -> RenderUtils.skyRainbow(0, 0.9f, 1.0f);
            mode.equals("Custom", ignoreCase = true) -> Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get(), colorAlphaValue.get())
         }
         
