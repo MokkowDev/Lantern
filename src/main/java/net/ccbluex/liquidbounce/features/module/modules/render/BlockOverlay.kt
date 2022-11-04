@@ -49,10 +49,10 @@ class BlockOverlay : Module() {
         val block = mc.theWorld.getBlockState(blockPos).block ?: return
         val partialTicks = event.partialTicks
         val rainbowMode = rainbowValue.get()
-        val color = when {
-           rainbowMode.equals("Rainbow", ignoreCase = true) -> ColorUtils.rainbow(0.4F)
-           rainbowMode.equals("SkyRainbow", ignoreCase = true) -> RenderUtils.skyRainbow(0, 0.9f, 1.0f);
-        } else if(rainbowMode.equals("Custom", ignoreCase = true)) {
+        val color = when(rainbowValue.get().toLowerCase()) {
+           "Rainbow" -> ColorUtils.rainbow(0.4F)
+           "SkyRainbow" -> RenderUtils.skyRainbow(0, 0.9f, 1.0f);
+        } else {
            Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get(), colorAlphaValue.get())
         }
         
