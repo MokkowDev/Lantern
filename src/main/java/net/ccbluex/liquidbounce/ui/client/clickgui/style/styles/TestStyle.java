@@ -40,8 +40,8 @@ public class TestStyle extends Style {
     public void drawPanel(int mouseX, int mouseY, Panel panel) {
     	RenderUtils.drawRoundedRect((float) panel.getX(), (float) panel.getY() - 3, (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 17, 1.6F, new Color(255,255,255).getRGB());
          if(panel.getFade() > 0) {
-            RenderUtils.drawRoundedRect((float) panel.getX(), (float) panel.getY() + 17, (float) panel.getX() + panel.getWidth(), (float) panel.getY + 19, 1.6F, new Color(255,255,255).getRGB());
-            RenderUtils.drawRoundedRect((float) panel.getX(), (float) panel.getY() + 17 + panel.getFade(), (float) panel.getX() + panel.getWidth(), (float) panel.getY + 19 + panel.getFade() + 5, 1.6F, new Color(255,255,255).getRGB());
+            RenderUtils.drawRoundedRect((float) panel.getX(), (float) panel.getY() + 17, (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 19, 1.6F, new Color(255,255,255).getRGB());
+            RenderUtils.drawRoundedRect((float) panel.getX(), (float) panel.getY() + 17 + panel.getFade(), (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 19 + panel.getFade() + 5, 1.6F, new Color(255,255,255).getRGB());
         }
         GlStateManager.resetColor();
         float textWidth = Fonts.fontTahoma30.getStringWidth("§f" + StringUtils.stripControlCodes(panel.getName()));
@@ -60,7 +60,7 @@ public class TestStyle extends Style {
     @Override
     public void drawButtonElement(int mouseX, int mouseY, ButtonElement buttonElement) {
         // Gui.drawRect(buttonElement.getX() - 1, buttonElement.getY() - 1, buttonElement.getX() + buttonElement.getWidth() + 1, buttonElement.getY() + buttonElement.getHeight() + 1, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE ? new Color(20,20,20) : new Color(40,40,40), buttonElement.hoverTime).getRGB());
-        RenderUtils.drawRoundedRect((float) buttonElement.getX() - 1, (float) buttonElement.getY() - 1, (float) buttonElement.getX() + buttonElement.getWidth() + 1, (float) buttomElement.getY() + buttonElement.getHeight() + 1, 1.6F, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE ? new Color(255,255,255) : new Color(200,200,200), buttonElement.hoverTime).getRGB());
+        RenderUtils.drawRoundedRect((float) buttonElement.getX() - 1, (float) buttonElement.getY() - 1, (float) buttonElement.getX() + buttonElement.getWidth() + 1, (float) buttonElement.getY() + buttonElement.getHeight() + 1, 1.6F, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE ? new Color(255,255,255) : new Color(200,200,200), buttonElement.hoverTime).getRGB());
         // RenderUtils.drawRoundedRect((float) buttonElement.getX() - 1, (float) buttonElement.getY() - 1, (float) buttonElement.getX() + buttonElement.getWidth() + 1 (float) buttonElement.getY() + buttonElement.getHeight() + 1, 1.6F, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE ? new Color(255,255,255) : new Color(200,200,200), buttonElement.hoverTime).getRGB());
              
         GlStateManager.resetColor();
@@ -289,16 +289,11 @@ public class TestStyle extends Style {
         final float sliderValue = (float) x + (float) width * (displayValue - min) / (max - min);
 
         RenderUtils.drawRoundedRect(x, y, x + width, y + 2f, 1.6f, Integer.MAX_VALUE);
-        RenderUtils.drawRoundedRect(x, y, sliderValue, y + 2f, 1.6f, color);
+        RenderUtils.drawRoundedRect(x, y, sliderValue, y + 2f, 1.6f, color.getRGB());
         RenderUtils.drawFilledCircle((int) sliderValue, y + 1, 3, color);
 
         if (mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + 3) {
             dWheel = Mouse.getDWheel();
-            if(Keyboard == KEY_UP) {
-            	 dWheel = Mouse.getDWheel() + 1;
-            } else if(Keyboard == KEY_DOWN) {
-             	dWheel = Mouse.getDWheel() - 1;
-            }
             if (dWheel != 0) {
                 if (dWheel > 0)
                     return Math.min(value + (inte ? 1F : 0.01F), max);
