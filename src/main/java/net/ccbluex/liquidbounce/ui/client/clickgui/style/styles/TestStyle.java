@@ -70,8 +70,8 @@ public class TestStyle extends Style {
 
     @Override
     public void drawModuleElement(int mouseX, int mouseY, ModuleElement moduleElement) {
-        RenderUtils.drawRoundedRect((float) moduleElement.getX() - 1, (float) moduleElement.getY() - 1, (float) moduleElement.getX() + moduleElement.getWidth() + 1, (float) moduleElement.getY() + moduleElement.getHeight() + 1, hoverColor(new Color(255,255,255), moduleElement.hoverTime).getRGB());
-        RenderUtils.drawRoundedRect((float) moduleElement.getX() - 1, (float) moduleElement.getY() - 1, (float) moduleElement.getX() + moduleElement.getWidth() + 1, (float) moduleElement.getY() + moduleElement.getHeight() + 1, hoverColor(new Color(200,200,200), moduleElement.slowlyFade), moduleElement.hoverTime).getRGB());
+        RenderUtils.drawRoundedRect((float) moduleElement.getX() - 1, (float) moduleElement.getY() - 1, (float) moduleElement.getX() + moduleElement.getWidth() + 1, (float) moduleElement.getY() + moduleElement.getHeight() + 1, 1.6f, hoverColor(new Color(255,255,255), moduleElement.hoverTime).getRGB());
+        RenderUtils.drawRoundedRect((float) moduleElement.getX() - 1, (float) moduleElement.getY() - 1, (float) moduleElement.getX() + moduleElement.getWidth() + 1, (float) moduleElement.getY() + moduleElement.getHeight() + 1, 1.6f, hoverColor(new Color(200,200,200), moduleElement.slowlyFade).getRGB());
         GlStateManager.resetColor();
         Fonts.fontTahoma30.drawString(moduleElement.getDisplayName(), moduleElement.getX() + 5, moduleElement.getY() + 7, Color.BLACK.getRGB());
 

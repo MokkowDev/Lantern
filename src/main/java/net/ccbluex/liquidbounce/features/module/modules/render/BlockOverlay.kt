@@ -51,7 +51,7 @@ class BlockOverlay : Module() {
         val rainbowMode = rainbowValue.get()
         val color = when(rainbowValue.get().toLowerCase()) {
            "Rainbow" -> ColorUtils.rainbow(0.4F)
-           "SkyRainbow" -> RenderUtils.skyRainbow(0, 0.9f, 1.0f);
+           "SkyRainbow" -> RenderUtils.skyRainbow(0, 0.9f, 1.0f)
            else -> Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get(), colorAlphaValue.get())
         }
         
