@@ -33,7 +33,7 @@ import org.lwjgl.input.Keyboard;
 public class TestStyle extends Style {
 
     private boolean mouseDown;
-    public int dWheel;
+    public static int dWheel;
     private boolean rightMouseDown;
 
     @Override
@@ -294,9 +294,9 @@ public class TestStyle extends Style {
 
         if (mouseX >= x && mouseX <= x + width && mouseY >= y && mouseY <= y + 3) {
             dWheel = Mouse.getDWheel();
-            if(Keyboard.KEY_UP) {
+            if(Keyboard == KEY_UP) {
             	 dWheel = Mouse.getDWheel() + 1;
-            } else if(Keyboard.KEY_DOWN) {
+            } else if(Keyboard == KEY_DOWN) {
              	dWheel = Mouse.getDWheel() - 1;
             }
             if (dWheel != 0) {
