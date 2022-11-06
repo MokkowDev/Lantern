@@ -36,7 +36,7 @@ import org.lwjgl.opengl.GL11
 class Notifications(x: Double = 0.0, y: Double = 30.0, scale: Float = 1F,
                     side: Side = Side(Side.Horizontal.RIGHT, Side.Vertical.DOWN)) : Element(x, y, scale, side) {
 
-    val styleValue = ListValue("Style", arrayOf("Full", "Compact", "Material", "Test"), "Material")
+    val styleValue = ListValue("Style", arrayOf("Full", "Full2", "Compact", "Material"), "Material")
     val barValue = BoolValue("Bar", true, { styleValue.get().equals("material", true) })
     val bgAlphaValue = IntegerValue("Background-Alpha", 120, 0, 255, { !styleValue.get().equals("material", true) })
 
@@ -71,6 +71,7 @@ class Notifications(x: Double = 0.0, y: Double = 30.0, scale: Float = 1F,
                 animationY += (when (styleValue.get().toLowerCase()) {
                                     "compact" -> 20F
                                     "full" -> 30F
+                                    "full2" -> 30F
                                     else -> (if (side.vertical == Side.Vertical.DOWN) i.notifHeight else notifications[indexz].notifHeight) + 5F + (if (barValue.get()) 2F else 0F)
                                 }) * (if (side.vertical == Side.Vertical.DOWN) 1F else -1F)
             }
@@ -93,6 +94,7 @@ class Notifications(x: Double = 0.0, y: Double = 30.0, scale: Float = 1F,
 
     private fun getNotifBorder() = when (styleValue.get().toLowerCase()) {
         "full" -> Border(-130F, -58F, 0F, -30F)
+        "full2" -> Border(-130F, -58F, 0F, -30F)
         "compact" -> Border(-102F, -48F, 0F, -30F)
         else -> if (side.vertical == Side.Vertical.DOWN) Border(-160F, -50F, 0F, -30F) else Border(-160F, -20F, 0F, 0F)
     }
@@ -245,7 +247,7 @@ class Notification(message : String, type : Type, displayLength: Long) {
                 GlStateManager.resetColor()
                 Fonts.font40.drawString(message, -x + 2, -18F - y, -1)
             }
-            "test" -> {
+            "Full2" -> {
                 val dist = (x + 1 + 26F) - (x - 8 - textLength)
                 val kek = -x - 1 - 26F
 
@@ -279,7 +281,7 @@ class Notification(message : String, type : Type, displayLength: Long) {
                     RenderUtils.drawRoundedRect(kek, -y, kek + dist, -1F - y, 1.8f, enumColor)
 
                 GlStateManager.resetColor()
-                Fonts.fontSFUI40.drawString(message, -x + 2, -18F - y, -1)
+                Fonts.fontSFUI40.drawStringWithShadow(message, -x + 2, -18F - y, enumColor)
             }
             "material" -> {
                 GlStateManager.resetColor()

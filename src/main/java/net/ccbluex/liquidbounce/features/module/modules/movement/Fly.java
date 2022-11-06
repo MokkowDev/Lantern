@@ -98,7 +98,6 @@ public class Fly extends Module {
             "HAC",
             "WatchCat",
             "Watchdog",
-            "Watchdog2",
             
             // Other exploit-based stuffs.
             "Custom",
@@ -108,7 +107,8 @@ public class Fly extends Module {
             "Clip",
             "Jump",
             "Derp",
-            "Collide"
+            "Collide",
+            "Dev"
     }, "Motion");
 
     private final FloatValue vanillaSpeedValue = new FloatValue("Speed", 2F, 0F, 5F, () -> { 
@@ -569,7 +569,7 @@ public class Fly extends Module {
                         hClip(expectMoves[0], expectMoves[1], expectMoves[2]);
                 }
                 break;
-            case "watchdog2":
+            case "dev":
                 mc.timer.timerSpeed = 1.0f;
                 mc.thePlayer.motionY = 0;
                 if (mc.thePlayer.ticksExisted % 17 == 0) {

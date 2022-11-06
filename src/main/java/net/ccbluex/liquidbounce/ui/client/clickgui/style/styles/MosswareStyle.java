@@ -30,7 +30,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import org.lwjgl.input.Keyboard;
 
-public class TestStyle extends Style {
+public class MosswareStyle extends Style {
 
     private boolean mouseDown;
     public static int dWheel;
@@ -73,7 +73,7 @@ public class TestStyle extends Style {
         RenderUtils.drawRoundedRect((float) moduleElement.getX() - 1, (float) moduleElement.getY() - 1, (float) moduleElement.getX() + moduleElement.getWidth() + 1, (float) moduleElement.getY() + moduleElement.getHeight() + 1, 1.6f, hoverColor(new Color(30,30,30), moduleElement.hoverTime).getRGB());
         RenderUtils.drawRoundedRect((float) moduleElement.getX() - 1, (float) moduleElement.getY() - 1, (float) moduleElement.getX() + moduleElement.getWidth() + 1, (float) moduleElement.getY() + moduleElement.getHeight() + 1, 1.6f, hoverColor(new Color(20,20,20), moduleElement.slowlyFade).getRGB());
         GlStateManager.resetColor();
-        Fonts.fontSFUI35.drawString(moduleElement.getDisplayName(), moduleElement.getX() + 5, moduleElement.getY() + 7, Color.WHITE.getRGB());
+        Fonts.fontSFUI35.drawString(moduleElement.getDisplayName(), moduleElement.getX() + 5, moduleElement.getY() + 6, Color.WHITE.getRGB());
 
         // Draw settings
         final List<Value<?>> moduleValues = moduleElement.getModule().getValues();
@@ -83,7 +83,7 @@ public class TestStyle extends Style {
 
             if(moduleElement.isShowSettings()) {
                 if(moduleElement.getSettingsWidth() > 0F && moduleElement.slowlySettingsYPos > moduleElement.getY() + 6)
-                    RenderUtils.drawRoundedRect(moduleElement.getX() + moduleElement.getWidth() + 4, moduleElement.getY() + 6, moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth(), moduleElement.slowlySettingsYPos + 2, 1.6F, new Color(255,255,255,150).getRGB());
+                    RenderUtils.drawRoundedRect(moduleElement.getX() + moduleElement.getWidth() + 4, moduleElement.getY() + 6, moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth(), moduleElement.slowlySettingsYPos + 2, 1.6F, new Color(30,30,30,150).getRGB());
 
                 moduleElement.slowlySettingsYPos = moduleElement.getY() + 6;
                 for(final Value value : moduleValues) {
@@ -103,7 +103,7 @@ public class TestStyle extends Style {
                             mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
                         }
 
-                        Fonts.fontSFUI35.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, ((BoolValue) value).get() ? Color.GREEN.getRGB() : Color.WHITE.getRGB());
+                        Fonts.fontSFUI35.drawStringWithShadow(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, ((BoolValue) value).get() ? Color.GREEN.getRGB() : Color.WHITE.getRGB());
                         moduleElement.slowlySettingsYPos += 11;
                     }else if(value instanceof ListValue) {
                         final ListValue listValue = (ListValue) value;
@@ -114,8 +114,8 @@ public class TestStyle extends Style {
                         if(moduleElement.getSettingsWidth() < textWidth + 16)
                             moduleElement.setSettingsWidth(textWidth + 16);
 
-                        Fonts.fontSFUI35.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, 0xffffff);
-                        Fonts.fontSFUI35.drawString(listValue.openList ? "-" : "+", (int) (moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth() - (listValue.openList ? 5 : 6)), moduleElement.slowlySettingsYPos + 2, 0xffffff);
+                        Fonts.fontSFUI35.drawStringWithShadow(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, 0xffffff);
+                        Fonts.fontSFUI35.drawStringWithShadow(listValue.openList ? "-" : "+", (int) (moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth() - (listValue.openList ? 5 : 6)), moduleElement.slowlySettingsYPos + 2, 0xffffff);
 
                         if(mouseX >= moduleElement.getX() + moduleElement.getWidth() + 4 && mouseX <= moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth() && mouseY >= moduleElement.slowlySettingsYPos && mouseY <= moduleElement.slowlySettingsYPos + Fonts.font35.FONT_HEIGHT && Mouse.isButtonDown(0) && moduleElement.isntPressed()) {
                             listValue.openList = !listValue.openList;
@@ -137,7 +137,7 @@ public class TestStyle extends Style {
                                 }
 
                                 GlStateManager.resetColor();
-                                Fonts.fontSFUI35.drawString(valueOfList, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, listValue.get() != null && listValue.get().equalsIgnoreCase(valueOfList) ? Color.GREEN.getRGB() : Color.WHITE.getRGB());
+                                Fonts.fontSFUI35.drawStringWithShadow(valueOfList, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, listValue.get() != null && listValue.get().equalsIgnoreCase(valueOfList) ? Color.GREEN.getRGB() : Color.WHITE.getRGB());
                                 moduleElement.slowlySettingsYPos += Fonts.fontSFUI35.FONT_HEIGHT + 1;
                             }
                         }
@@ -158,7 +158,7 @@ public class TestStyle extends Style {
                         if(valueOfSlide != floatValue.get())
                             floatValue.set(valueOfSlide);
 
-                        Fonts.fontSFUI35.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 3, 0xffffff);
+                        Fonts.fontSFUI35.drawStringWithShadow(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 3, 0xffffff);
                         moduleElement.slowlySettingsYPos += 19;
                     }else if(value instanceof IntegerValue) {
                         final IntegerValue integerValue = (IntegerValue) value;
@@ -173,7 +173,7 @@ public class TestStyle extends Style {
                         if(valueOfSlide != integerValue.get())
                             integerValue.set((int) valueOfSlide);
 
-                        Fonts.fontSFUI35.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 3, 0xffffff);
+                        Fonts.fontSFUI35.drawStringWithShadow(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 3, 0xffffff);
                         moduleElement.slowlySettingsYPos += 19;
                     }else if(value instanceof FontValue) {
                         final FontValue fontValue = (FontValue) value;
@@ -195,7 +195,7 @@ public class TestStyle extends Style {
                             }
                         }
 
-                        Fonts.fontSFUI35.drawString(displayString, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, Color.WHITE.getRGB());
+                        Fonts.fontSFUI35.drawStringWithShadow(displayString, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, Color.WHITE.getRGB());
                         int stringWidth = Fonts.fontSFUI35.getStringWidth(displayString);
 
                         if(moduleElement.getSettingsWidth() < stringWidth + 8)
@@ -247,7 +247,7 @@ public class TestStyle extends Style {
                             moduleElement.setSettingsWidth(textWidth + 8);
 
                         GlStateManager.resetColor();
-                        Fonts.fontSFUI35.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 4, 0xffffff);
+                        Fonts.fontSFUI35.drawStringWithShadow(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 4, 0xffffff);
                         moduleElement.slowlySettingsYPos += 12;
                     }
                 }

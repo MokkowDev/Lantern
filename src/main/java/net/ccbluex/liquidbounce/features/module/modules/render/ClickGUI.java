@@ -29,7 +29,7 @@ import java.awt.*;
 
 @ModuleInfo(name = "ClickGUI", description = "Opens the ClickGUI.", category = ModuleCategory.RENDER, keyBind = Keyboard.KEY_RSHIFT, forceNoSound = true, onlyEnable = true)
 public class ClickGUI extends Module {
-    private final ListValue styleValue = new ListValue("Style", new String[] {"LiquidBounce", "Null", "Slowly", "Black", "White", "Test"}, "Null") {
+    private final ListValue styleValue = new ListValue("Style", new String[] {"LiquidBounce", "Null", "Slowly", "Black", "White", "Mossware"}, "Null") {
         @Override
         protected void onChanged(final String oldValue, final String newValue) {
             updateStyle();
