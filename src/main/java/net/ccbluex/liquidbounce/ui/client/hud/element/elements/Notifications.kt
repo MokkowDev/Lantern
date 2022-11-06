@@ -259,7 +259,7 @@ class Notification(message : String, type : Type, displayLength: Long) {
                     GL11.glTranslatef(originalX, originalY, 0F)
                 } 
 
-                RenderUtils.drawRoundesRect(-x + 8 + textLength, -y, kek, -28F - y, 1.8f, backgroundColor.rgb)
+                RenderUtils.drawRoundedRect(-x + 8 + textLength, -y, kek, -28F - y, 1.8f, backgroundColor.rgb)
 
                 GL11.glPushMatrix()
                 GlStateManager.disableAlpha()
