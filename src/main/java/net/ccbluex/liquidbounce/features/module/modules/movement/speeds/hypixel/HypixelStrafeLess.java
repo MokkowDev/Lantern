@@ -35,7 +35,7 @@ public class HypixelStrafeLess extends SpeedMode {
             if (mc.thePlayer.onGround) {
                 if(MovementUtils.isMoving()) mc.thePlayer.jump();
                 if (speed.recalcValue.get()) moveSpeed = Math.max(MovementUtils.getBaseMoveSpeed() * speed.baseStrengthValue.get(), MovementUtils.getSpeed());
-                if(speed.strafeOnDmg.get() && mc.thePlayer.hurtTime > 2) MovementUtils.strafe());
+                if(speed.strafeOnDmg.get() && mc.thePlayer.hurtTime > 2) MovementUtils.strafe();
                 moveSpeed *= speed.moveSpeedValue.get();
             }  
         } 
