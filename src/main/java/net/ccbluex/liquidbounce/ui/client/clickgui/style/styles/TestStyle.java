@@ -61,7 +61,7 @@ public class TestStyle extends Style {
     public void drawButtonElement(int mouseX, int mouseY, ButtonElement buttonElement) {
         // Gui.drawRect(buttonElement.getX() - 1, buttonElement.getY() - 1, buttonElement.getX() + buttonElement.getWidth() + 1, buttonElement.getY() + buttonElement.getHeight() + 1, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE ? new Color(20,20,20) : new Color(40,40,40), buttonElement.hoverTime).getRGB());
         RenderUtils.drawRoundedRect((float) buttonElement.getX() - 1, (float) buttonElement.getY() - 1, (float) buttonElement.getX() + buttonElement.getWidth() + 1, (float) buttonElement.getY() + buttonElement.getHeight() + 1, 1.6F, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE ? new Color(30,30,30,150) : new Color(20,20,20,150), buttonElement.hoverTime).getRGB());
-        // RenderUtils.drawRoundedRect((float) buttonElement.getX() - 1, (float) buttonElement.getY() - 1, (float) buttonElement.getX() + buttonElement.getWidth() + 1 (float) buttonElement.getY() + buttonElement.getHeight() + 1, 1.6F, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE ? new Color(255,255,255) : new Color(200,200,200), buttonElement.hoverTime).getRGB());
+        // RenderUtils.drawRoundedRect((float) buttonElement.getX() - 1, (float) buttonElement.getY() - 1, (float) buttonElement.getX() + buttonElement.getWidth() + 1 (float) buttonElement.getY() + buttonElement.getHeight() + 1, 1.6F, hoverColor(buttonElement.getcolor() != Integer.MAX_VALUE ? new Color(255,255,255) : new Color(200,200,200), buttonElement.hoverTime).getRGB());
              
         GlStateManager.resetColor();
 
@@ -103,7 +103,7 @@ public class TestStyle extends Style {
                             mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
                         }
 
-                        Fonts.fontSFUI35.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, ((BoolValue) value).get() ? Color.AQUA.getRGB() : Color.WHITE.getRGB());
+                        Fonts.fontSFUI35.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, ((BoolValue) value).get() ? Color.GREEN.getRGB() : Color.WHITE.getRGB());
                         moduleElement.slowlySettingsYPos += 11;
                     }else if(value instanceof ListValue) {
                         final ListValue listValue = (ListValue) value;
@@ -137,7 +137,7 @@ public class TestStyle extends Style {
                                 }
 
                                 GlStateManager.resetColor();
-                                Fonts.fontSFUI35.drawString(valueOfList, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, listValue.get() != null && listValue.get().equalsIgnoreCase(valueOfList) ? Color.AQUA.getRGB() : Color.WHITE.getRGB());
+                                Fonts.fontSFUI35.drawString(valueOfList, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, listValue.get() != null && listValue.get().equalsIgnoreCase(valueOfList) ? Color.GREEN.getRGB() : Color.WHITE.getRGB());
                                 moduleElement.slowlySettingsYPos += Fonts.fontSFUI35.FONT_HEIGHT + 1;
                             }
                         }
