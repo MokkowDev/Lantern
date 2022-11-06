@@ -59,7 +59,7 @@ class Target : Element() {
     val showWithChatOpen = BoolValue("Show-ChatOpen", true)
     val resetBar = BoolValue("ResetBarWhenHiding", false)
 
-    val colorModeValue = ListValue("Color", arrayOf("Custom", "Rainbow", "Sky", "Slowly", "Fade", "Mixer", "Health"), "Custom")
+    val colorModeValue = ListValue("Color", arrayOf("Custom", "Rainbow", "Sky", "Slowly", "Fade", "Mixer", "Health"), "Health")
     val redValue = IntegerValue("Red", 252, 0, 255)
     val greenValue = IntegerValue("Green", 96, 0, 255)
     val blueValue = IntegerValue("Blue", 66, 0, 255)

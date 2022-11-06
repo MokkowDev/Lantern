@@ -70,6 +70,7 @@ public class Speed extends Module {
             // Hypixel
             new HypixelBoost(),
             new HypixelStable(),
+            new HypixelStrafeLess(),
             new HypixelCustom(),
 
             // Spartan
@@ -257,6 +258,7 @@ public class Speed extends Module {
 
     public final BoolValue sendJumpValue = new BoolValue("SendJump", true, () -> (typeValue.get().equalsIgnoreCase("hypixel") && !getModeName().equalsIgnoreCase("hypixelcustom")));
     public final BoolValue recalcValue = new BoolValue("ReCalculate", true, () -> (typeValue.get().equalsIgnoreCase("hypixel") && sendJumpValue.get() && !getModeName().equalsIgnoreCase("hypixelcustom")));
+    public final BoolValue strafeOnDmg = new BoolValue("StrafeOnDamage", true, () -> (typeValue.get().equalsIgnoreCase("hypixel") && getModeName().equalsIgnoreCase("hypixelstrafeless")));
     public final FloatValue glideStrengthValue = new FloatValue("GlideStrength", 0.03F, 0F, 0.05F, () -> (typeValue.get().equalsIgnoreCase("hypixel") && !getModeName().equalsIgnoreCase("hypixelcustom")));
     public final FloatValue moveSpeedValue = new FloatValue("MoveSpeed", 1.47F, 1F, 1.7F, () -> (typeValue.get().equalsIgnoreCase("hypixel") && !getModeName().equalsIgnoreCase("hypixelcustom")));
     public final FloatValue jumpYValue = new FloatValue("JumpY", 0.42F, 0F, 1F, () -> (typeValue.get().equalsIgnoreCase("hypixel") && !getModeName().equalsIgnoreCase("hypixelcustom")));

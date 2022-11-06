@@ -92,7 +92,7 @@ public final class RenderUtils extends MinecraftInstance {
 
         glEndList();
     }
-
+    
     private static final Frustum frustrum = new Frustum();
 
     protected static float zLevel = 0F;

@@ -30,7 +30,7 @@ class BlockOverlay : Module() {
     private val colorGreenValue = IntegerValue("Green", 117, 0, 255)
     private val colorBlueValue = IntegerValue("Blue", 255, 0, 255)
     private val colorAlphaValue = IntegerValue("Alpha", 135, 0, 255)
-    val rainbowValue = ListValue("Color-Mode", arrayOf("Rainbow", "SkyRainbow", "Custom"), "SkyRainbow")
+    val rainbowValue = ListValue("Color-Mode", arrayOf("CRainbow", "SkyRainbow", "LiquidSlowly", "Fade", "Mixer", "Custom"), "SkyRainbow")
     val infoValue = BoolValue("Info", false)
 
     val currentBlock: BlockPos?
@@ -50,8 +50,11 @@ class BlockOverlay : Module() {
         val partialTicks = event.partialTicks
         val rainbowMode = rainbowValue.get()
         val color = when(rainbowValue.get().toLowerCase()) {
-           "Rainbow" -> ColorUtils.rainbow(0.4F)
+           "CRainbow" -> RenderUtils.getRainbowOpaque(2, 0.9f 1.0f, 0)
            "SkyRainbow" -> RenderUtils.skyRainbow(0, 0.9f, 1.0f)
+           "LiquidSlowly" -> ColorUtils.LiquidSlowly(System.nanoTime(), 0, 0.9f, 1.0f).rgb
+           "Fade" -> ColorUtils.fade(Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get(), colorAlphaValue.get()), 0, 100).rgb
+           "Mixer" -> ColorMixer.getMixedColor(0, 2).rgb
            else -> Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get(), colorAlphaValue.get())
         }
         
