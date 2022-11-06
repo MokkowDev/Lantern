@@ -107,8 +107,8 @@ public class ClickGUI extends Module {
             case "white":
                 LiquidBounce.clickGui.style = new WhiteStyle();
                 break;
-            case "test":
-                LiquidBounce.clickGui.style = new TestStyle();
+            case "mossware":
+                LiquidBounce.clickGui.style = new MosswareStyle();
                 break;
         }
     }
