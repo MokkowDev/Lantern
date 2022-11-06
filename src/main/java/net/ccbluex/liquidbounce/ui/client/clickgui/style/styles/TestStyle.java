@@ -38,52 +38,52 @@ public class TestStyle extends Style {
 
     @Override
     public void drawPanel(int mouseX, int mouseY, Panel panel) {
-    	RenderUtils.drawRoundedRect((float) panel.getX(), (float) panel.getY() - 3, (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 17, 1.6F, new Color(255,255,255).getRGB());
+    	RenderUtils.drawRoundedRect((float) panel.getX(), (float) panel.getY() - 3, (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 17, 1.6F, new Color(30,30,30,150).getRGB());
          if(panel.getFade() > 0) {
-            RenderUtils.drawRoundedRect((float) panel.getX(), (float) panel.getY() + 17, (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 19, 1.6F, new Color(255,255,255).getRGB());
-            RenderUtils.drawRoundedRect((float) panel.getX(), (float) panel.getY() + 17 + panel.getFade(), (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 19 + panel.getFade() + 5, 1.6F, new Color(255,255,255).getRGB());
+            RenderUtils.drawRoundedRect((float) panel.getX(), (float) panel.getY() + 17, (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 19, 1.6F, new Color(30,30,30,150).getRGB());
+            RenderUtils.drawRoundedRect((float) panel.getX(), (float) panel.getY() + 17 + panel.getFade(), (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 19 + panel.getFade() + 5, 1.6F, new Color(30,30,30,150).getRGB());
         }
         GlStateManager.resetColor();
-        float textWidth = Fonts.fontTahoma30.getStringWidth("§f" + StringUtils.stripControlCodes(panel.getName()));
-        Fonts.fontTahoma30.drawStringWithShadow(panel.getName(), (int) (panel.getX() - (textWidth - 100.0F) / 2F), panel.getY() + 7 - 3, Color.BLACK.getRGB());
+        float textWidth = Fonts.fontSFUI35.getStringWidth("§f" + StringUtils.stripControlCodes(panel.getName()));
+        Fonts.fontSFUI35.drawString(panel.getName(), (int) (panel.getX() - (textWidth - 100.0F) / 2F), panel.getY() + 7 - 3, Color.WHITE.getRGB());
     }
 
     @Override
     public void drawDescription(int mouseX, int mouseY, String text) {
-        int textWidth = Fonts.fontTahoma30.getStringWidth(text);
+        int textWidth = Fonts.fontSFUI35.getStringWidth(text);
 
-        RenderUtils.drawRect(mouseX + 9, mouseY, mouseX + textWidth + 14, mouseY + Fonts.fontTahoma30.FONT_HEIGHT + 3, new Color(255,255,255).getRGB());
+        RenderUtils.drawRoundedRect(mouseX + 9, mouseY, mouseX + textWidth + 14, mouseY + Fonts.fontSFUI35.FONT_HEIGHT + 3, 1.6f, new Color(40,40,40,160).getRGB());
         GlStateManager.resetColor();
-        Fonts.fontTahoma30.drawString(text, mouseX + 12, mouseY + (Fonts.fontTahoma30.FONT_HEIGHT / 2), Color.BLACK.getRGB());
+        Fonts.fontSFUI35.drawString(text, mouseX + 12, mouseY + (Fonts.fontSFUI35.FONT_HEIGHT / 2), Color.WHITE.getRGB());
     }
 
     @Override
     public void drawButtonElement(int mouseX, int mouseY, ButtonElement buttonElement) {
         // Gui.drawRect(buttonElement.getX() - 1, buttonElement.getY() - 1, buttonElement.getX() + buttonElement.getWidth() + 1, buttonElement.getY() + buttonElement.getHeight() + 1, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE ? new Color(20,20,20) : new Color(40,40,40), buttonElement.hoverTime).getRGB());
-        RenderUtils.drawRoundedRect((float) buttonElement.getX() - 1, (float) buttonElement.getY() - 1, (float) buttonElement.getX() + buttonElement.getWidth() + 1, (float) buttonElement.getY() + buttonElement.getHeight() + 1, 1.6F, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE ? new Color(255,255,255) : new Color(200,200,200), buttonElement.hoverTime).getRGB());
+        RenderUtils.drawRoundedRect((float) buttonElement.getX() - 1, (float) buttonElement.getY() - 1, (float) buttonElement.getX() + buttonElement.getWidth() + 1, (float) buttonElement.getY() + buttonElement.getHeight() + 1, 1.6F, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE ? new Color(30,30,30,150) : new Color(20,20,20,150), buttonElement.hoverTime).getRGB());
         // RenderUtils.drawRoundedRect((float) buttonElement.getX() - 1, (float) buttonElement.getY() - 1, (float) buttonElement.getX() + buttonElement.getWidth() + 1 (float) buttonElement.getY() + buttonElement.getHeight() + 1, 1.6F, hoverColor(buttonElement.getColor() != Integer.MAX_VALUE ? new Color(255,255,255) : new Color(200,200,200), buttonElement.hoverTime).getRGB());
              
         GlStateManager.resetColor();
 
-        Fonts.fontTahoma30.drawString(buttonElement.getDisplayName(), buttonElement.getX() + 5, buttonElement.getY() + 5, Color.BLACK.getRGB());
+        Fonts.fontSFUI35.drawString(buttonElement.getDisplayName(), buttonElement.getX() + 5, buttonElement.getY() + 5, Color.WHITE.getRGB());
     }
 
     @Override
     public void drawModuleElement(int mouseX, int mouseY, ModuleElement moduleElement) {
-        RenderUtils.drawRoundedRect((float) moduleElement.getX() - 1, (float) moduleElement.getY() - 1, (float) moduleElement.getX() + moduleElement.getWidth() + 1, (float) moduleElement.getY() + moduleElement.getHeight() + 1, 1.6f, hoverColor(new Color(255,255,255), moduleElement.hoverTime).getRGB());
-        RenderUtils.drawRoundedRect((float) moduleElement.getX() - 1, (float) moduleElement.getY() - 1, (float) moduleElement.getX() + moduleElement.getWidth() + 1, (float) moduleElement.getY() + moduleElement.getHeight() + 1, 1.6f, hoverColor(new Color(200,200,200), moduleElement.slowlyFade).getRGB());
+        RenderUtils.drawRoundedRect((float) moduleElement.getX() - 1, (float) moduleElement.getY() - 1, (float) moduleElement.getX() + moduleElement.getWidth() + 1, (float) moduleElement.getY() + moduleElement.getHeight() + 1, 1.6f, hoverColor(new Color(30,30,30), moduleElement.hoverTime).getRGB());
+        RenderUtils.drawRoundedRect((float) moduleElement.getX() - 1, (float) moduleElement.getY() - 1, (float) moduleElement.getX() + moduleElement.getWidth() + 1, (float) moduleElement.getY() + moduleElement.getHeight() + 1, 1.6f, hoverColor(new Color(20,20,20), moduleElement.slowlyFade).getRGB());
         GlStateManager.resetColor();
-        Fonts.fontTahoma30.drawString(moduleElement.getDisplayName(), moduleElement.getX() + 5, moduleElement.getY() + 7, Color.BLACK.getRGB());
+        Fonts.fontSFUI35.drawString(moduleElement.getDisplayName(), moduleElement.getX() + 5, moduleElement.getY() + 7, Color.WHITE.getRGB());
 
         // Draw settings
         final List<Value<?>> moduleValues = moduleElement.getModule().getValues();
 
         if(!moduleValues.isEmpty()) {
-            Fonts.fontTahoma30.drawString(">", moduleElement.getX() + moduleElement.getWidth() - 8, moduleElement.getY() + 5, RenderUtils.SkyRainbow(0, 0.9f, 1.0f));
+            Fonts.fontSFUI35.drawStringWithShadow(">", moduleElement.getX() + moduleElement.getWidth() - 8, moduleElement.getY() + 5, RenderUtils.SkyRainbow(0, 0.9f, 1.0f));
 
             if(moduleElement.isShowSettings()) {
                 if(moduleElement.getSettingsWidth() > 0F && moduleElement.slowlySettingsYPos > moduleElement.getY() + 6)
-                    RenderUtils.drawRoundedRect(moduleElement.getX() + moduleElement.getWidth() + 4, moduleElement.getY() + 6, moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth(), moduleElement.slowlySettingsYPos + 2, 1.6F, new Color(255,255,255).getRGB());
+                    RenderUtils.drawRoundedRect(moduleElement.getX() + moduleElement.getWidth() + 4, moduleElement.getY() + 6, moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth(), moduleElement.slowlySettingsYPos + 2, 1.6F, new Color(255,255,255,150).getRGB());
 
                 moduleElement.slowlySettingsYPos = moduleElement.getY() + 6;
                 for(final Value value : moduleValues) {
@@ -91,7 +91,7 @@ public class TestStyle extends Style {
                         continue;
                     if(value instanceof BoolValue) {
                         final String text = value.getName();
-                        final float textWidth = Fonts.fontTahoma30.getStringWidth(text);
+                        final float textWidth = Fonts.fontSFUI35.getStringWidth(text);
 
                         if(moduleElement.getSettingsWidth() < textWidth + 8)
                             moduleElement.setSettingsWidth(textWidth + 8);
@@ -103,29 +103,29 @@ public class TestStyle extends Style {
                             mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
                         }
 
-                        Fonts.fontTahoma30.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, ((BoolValue) value).get() ? Color.WHITE.getRGB() : Integer.MAX_VALUE);
+                        Fonts.fontSFUI35.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, ((BoolValue) value).get() ? Color.AQUA.getRGB() : Color.WHITE.getRGB());
                         moduleElement.slowlySettingsYPos += 11;
                     }else if(value instanceof ListValue) {
                         final ListValue listValue = (ListValue) value;
 
                         final String text = value.getName();
-                        final float textWidth = Fonts.fontTahoma30.getStringWidth(text);
+                        final float textWidth = Fonts.fontSFUI35.getStringWidth(text);
 
                         if(moduleElement.getSettingsWidth() < textWidth + 16)
                             moduleElement.setSettingsWidth(textWidth + 16);
 
-                        Fonts.fontTahoma30.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, 0xffffff);
-                        Fonts.fontTahoma30.drawString(listValue.openList ? "-" : "+", (int) (moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth() - (listValue.openList ? 5 : 6)), moduleElement.slowlySettingsYPos + 2, 0xffffff);
+                        Fonts.fontSFUI35.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, 0xffffff);
+                        Fonts.fontSFUI35.drawString(listValue.openList ? "-" : "+", (int) (moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth() - (listValue.openList ? 5 : 6)), moduleElement.slowlySettingsYPos + 2, 0xffffff);
 
                         if(mouseX >= moduleElement.getX() + moduleElement.getWidth() + 4 && mouseX <= moduleElement.getX() + moduleElement.getWidth() + moduleElement.getSettingsWidth() && mouseY >= moduleElement.slowlySettingsYPos && mouseY <= moduleElement.slowlySettingsYPos + Fonts.font35.FONT_HEIGHT && Mouse.isButtonDown(0) && moduleElement.isntPressed()) {
                             listValue.openList = !listValue.openList;
                             mc.getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
                         }
 
-                        moduleElement.slowlySettingsYPos += Fonts.fontTahoma30.FONT_HEIGHT + 1;
+                        moduleElement.slowlySettingsYPos += Fonts.fontSFUI35.FONT_HEIGHT + 1;
 
                         for(final String valueOfList : listValue.getValues()) {
-                            final float textWidth2 = Fonts.font35.getStringWidth("> " + valueOfList);
+                            final float textWidth2 = Fonts.fontSFUI35.getStringWidth("> " + valueOfList);
 
                             if(moduleElement.getSettingsWidth() < textWidth2 + 12)
                                 moduleElement.setSettingsWidth(textWidth2 + 12);
@@ -137,8 +137,8 @@ public class TestStyle extends Style {
                                 }
 
                                 GlStateManager.resetColor();
-                                Fonts.fontTahoma30.drawString("> " + valueOfList, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, listValue.get() != null && listValue.get().equalsIgnoreCase(valueOfList) ? Color.BLACK.getRGB() : Integer.MAX_VALUE);
-                                moduleElement.slowlySettingsYPos += Fonts.fontTahoma30.FONT_HEIGHT + 1;
+                                Fonts.fontSFUI35.drawString(valueOfList, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, listValue.get() != null && listValue.get().equalsIgnoreCase(valueOfList) ? Color.AQUA.getRGB() : Color.WHITE.getRGB());
+                                moduleElement.slowlySettingsYPos += Fonts.fontSFUI35.FONT_HEIGHT + 1;
                             }
                         }
 
@@ -148,32 +148,32 @@ public class TestStyle extends Style {
                     }else if(value instanceof FloatValue) {
                         final FloatValue floatValue = (FloatValue) value;
                         final String text = value.getName() + "§f: " + round(floatValue.get()) + floatValue.getSuffix();
-                        final float textWidth = Fonts.fontTahoma30.getStringWidth(text);
+                        final float textWidth = Fonts.fontSFUI35.getStringWidth(text);
 
                         if(moduleElement.getSettingsWidth() < textWidth + 8)
                             moduleElement.setSettingsWidth(textWidth + 8);
 
-                        final float valueOfSlide = drawSlider(floatValue.get(), floatValue.getMinimum(), floatValue.getMaximum(), false, moduleElement.getX() + moduleElement.getWidth() + 8, moduleElement.slowlySettingsYPos + 14, (int) moduleElement.getSettingsWidth() - 12, mouseX, mouseY, new Color(20,20,20));
+                        final float valueOfSlide = drawSlider(floatValue.get(), floatValue.getMinimum(), floatValue.getMaximum(), false, moduleElement.getX() + moduleElement.getWidth() + 8, moduleElement.slowlySettingsYPos + 14, (int) moduleElement.getSettingsWidth() - 12, mouseX, mouseY, new Color(30,30,30));
 
                         if(valueOfSlide != floatValue.get())
                             floatValue.set(valueOfSlide);
 
-                        Fonts.fontTahoma30.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 3, 0xffffff);
+                        Fonts.fontSFUI35.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 3, 0xffffff);
                         moduleElement.slowlySettingsYPos += 19;
                     }else if(value instanceof IntegerValue) {
                         final IntegerValue integerValue = (IntegerValue) value;
                         final String text = value.getName() + "§f: " + (value instanceof BlockValue ? BlockUtils.getBlockName(integerValue.get()) + " (" + integerValue.get() + ")" : (integerValue.get() + integerValue.getSuffix()));
-                        final float textWidth = Fonts.fontTahoma30.getStringWidth(text);
+                        final float textWidth = Fonts.fontSFUI35.getStringWidth(text);
 
                         if(moduleElement.getSettingsWidth() < textWidth + 8)
                             moduleElement.setSettingsWidth(textWidth + 8);
 
-                        final float valueOfSlide = drawSlider(integerValue.get(), integerValue.getMinimum(), integerValue.getMaximum(), true, moduleElement.getX() + moduleElement.getWidth() + 8, moduleElement.slowlySettingsYPos + 14, (int) moduleElement.getSettingsWidth() - 12, mouseX, mouseY, new Color(20,20,20));
+                        final float valueOfSlide = drawSlider(integerValue.get(), integerValue.getMinimum(), integerValue.getMaximum(), true, moduleElement.getX() + moduleElement.getWidth() + 8, moduleElement.slowlySettingsYPos + 14, (int) moduleElement.getSettingsWidth() - 12, mouseX, mouseY, new Color(30,30,30));
 
                         if(valueOfSlide != integerValue.get())
                             integerValue.set((int) valueOfSlide);
 
-                        Fonts.fontTahoma30.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 3, 0xffffff);
+                        Fonts.fontSFUI35.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 3, 0xffffff);
                         moduleElement.slowlySettingsYPos += 19;
                     }else if(value instanceof FontValue) {
                         final FontValue fontValue = (FontValue) value;
@@ -195,8 +195,8 @@ public class TestStyle extends Style {
                             }
                         }
 
-                        Fonts.fontTahoma30.drawString(displayString, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, Color.WHITE.getRGB());
-                        int stringWidth = Fonts.fontTahoma30.getStringWidth(displayString);
+                        Fonts.fontSFUI35.drawString(displayString, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 2, Color.WHITE.getRGB());
+                        int stringWidth = Fonts.fontSFUI35.getStringWidth(displayString);
 
                         if(moduleElement.getSettingsWidth() < stringWidth + 8)
                             moduleElement.setSettingsWidth(stringWidth + 8);
@@ -241,13 +241,13 @@ public class TestStyle extends Style {
                         moduleElement.slowlySettingsYPos += 11;
                     }else{
                         final String text = value.getName() + "§f: " + value.get();
-                        final float textWidth = Fonts.fontTahoma30.getStringWidth(text);
+                        final float textWidth = Fonts.fontSFUI35.getStringWidth(text);
 
                         if(moduleElement.getSettingsWidth() < textWidth + 8)
                             moduleElement.setSettingsWidth(textWidth + 8);
 
                         GlStateManager.resetColor();
-                        Fonts.fontTahoma30.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 4, 0xffffff);
+                        Fonts.fontSFUI35.drawString(text, moduleElement.getX() + moduleElement.getWidth() + 6, moduleElement.slowlySettingsYPos + 4, 0xffffff);
                         moduleElement.slowlySettingsYPos += 12;
                     }
                 }
@@ -288,7 +288,7 @@ public class TestStyle extends Style {
 
         final float sliderValue = (float) x + (float) width * (displayValue - min) / (max - min);
 
-        RenderUtils.drawRoundedRect(x, y, x + width, y + 2f, 1.6f, Integer.MAX_VALUE);
+        RenderUtils.drawRoundedRect(x, y, x + width, y + 2f, 1.6f, Color.WHITE.getRGB());
         RenderUtils.drawRoundedRect(x, y, sliderValue, y + 2f, 1.6f, color.getRGB());
         RenderUtils.drawFilledCircle((int) sliderValue, y + 1, 3, color);
 
