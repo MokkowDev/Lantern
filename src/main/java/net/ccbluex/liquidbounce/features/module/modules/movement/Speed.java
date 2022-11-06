@@ -172,7 +172,7 @@ public class Speed extends Module {
         }
     };
 
-    public final ListValue hypixelModeValue = new ListValue("Hypixel-Mode", new String[]{"Boost", "Stable", "StrafeLess" "Custom"}, "Stable", () -> typeValue.get().equalsIgnoreCase("hypixel")) { // the worst hypixel bypass ever existed
+    public final ListValue hypixelModeValue = new ListValue("Hypixel-Mode", new String[]{"Boost", "Stable", "StrafeLess", "Custom"}, "Stable", () -> typeValue.get().equalsIgnoreCase("hypixel")) { // the worst hypixel bypass ever existed
 
         @Override
         protected void onChange(final String oldValue, final String newValue) {
