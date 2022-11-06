@@ -147,6 +147,11 @@ public final class RenderUtils extends MinecraftInstance {
         int color = Color.HSBtoRGB(hue, saturation, brightness);
         return color;
     }
+    
+    public static Color getRainbowColor(int seconds, float saturation, float brightness, int index) {
+        float hue = ((System.currentTimeMillis() + index) % (int) (seconds * 1000)) / (float) (seconds * 1000);
+        return Color.getHSBColor((float) (hue / 360.0f), saturation, brightness)
+    }
 
     public static int getNormalRainbow(int delay, float sat, float brg) {
         double rainbowState = Math.ceil((System.currentTimeMillis() + delay) / 20.0);

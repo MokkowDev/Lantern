@@ -21,6 +21,7 @@ import net.minecraft.block.Block
 import net.minecraft.client.gui.ScaledResolution
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.util.BlockPos
+import net.ccbluex.liquidbounce.features.module.modules.color.ColorMixer
 import org.lwjgl.opengl.GL11
 import java.awt.Color
 
@@ -50,11 +51,10 @@ class BlockOverlay : Module() {
         val partialTicks = event.partialTicks
         val rainbowMode = rainbowValue.get()
         val color = when(rainbowValue.get().toLowerCase()) {
-           "CRainbow" -> RenderUtils.getRainbowOpaque(2, 0.9f 1.0f, 0)
+           "CRainbow" -> RenderUtils.getRainbowColor(2, 0.9f, 1.0f, 0)
            "SkyRainbow" -> RenderUtils.skyRainbow(0, 0.9f, 1.0f)
-           "LiquidSlowly" -> ColorUtils.LiquidSlowly(System.nanoTime(), 0, 0.9f, 1.0f).rgb
-           "Fade" -> ColorUtils.fade(Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get(), colorAlphaValue.get()), 0, 100).rgb
-           "Mixer" -> ColorMixer.getMixedColor(0, 2).rgb
+           "Fade" -> ColorUtils.fade(Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get(), colorAlphaValue.get()), 0, 100)
+           "Mixer" -> ColorMixer.getMixedColor(0, 2)
            else -> Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get(), colorAlphaValue.get())
         }
         

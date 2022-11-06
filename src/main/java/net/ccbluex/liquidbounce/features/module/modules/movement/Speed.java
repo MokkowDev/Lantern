@@ -345,6 +345,10 @@ public class Speed extends Module {
             LiquidBounce.hud.addNotification(new Notification("Disabler is OFF! Disable this notification in settings.", Notification.Type.WARNING, 3000L));
         }
 
+        if (bypassWarning.get() && typeValue.get().equalsIgnoreCase("hypixel") && getModeName().equalsIgnoreCase("hypixelstrafeless")) {
+            LiquidBounce.hud.addNotification(new Notification("Speed is in development, use it as your risk.", Notification.Type.WARNING, 3000L));
+        }
+
         mc.timer.timerSpeed = 1F;
 
         final SpeedMode speedMode = getMode();
