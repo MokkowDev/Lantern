@@ -579,7 +579,7 @@ public class Fly extends Module {
                 if(isVclip) {
                 	mc.timer.timerSpeed = 1.35f;
                     mc.thePlayer.motionY = 0;
-                    MovementUtils.speed(MovementUtils.getBaseMoveSpeed() + 0.08);
+                    MovementUtils.strafe((float) MovementUtils.getBaseMoveSpeed() + 0.08f);
                 }
                 break;
             case "damage":
@@ -1174,7 +1174,7 @@ public class Fly extends Module {
 
             if(mode.equalsIgnoreCase("dev") && isVclip) {
             	packetPlayer.onGround = false;
-                packetPlayer.isMoving = false;
+                packetPlayer.setMoving(false);
                 packetPlayer.y = 0.093;
                 isFlagged = true;
                 isVclip = false;
