@@ -100,7 +100,6 @@ public class Fly extends Module {
             "Watchdog",
             
             // Other exploit-based stuffs.
-            "Custom",
             "Jetpack",
             "KeepAlive",
             "Flag",
@@ -149,6 +148,8 @@ public class Fly extends Module {
     private final BoolValue aac5UseC04Packet = new BoolValue("AAC5-UseC04", true, () -> modeValue.get().equalsIgnoreCase("aac5-vanilla"));
     private final ListValue aac5Packet = new ListValue("AAC5-Packet", new String[]{"Original", "Rise", "Other"}, "Original", () -> modeValue.get().equalsIgnoreCase("aac5-vanilla")); // Original is from UnlegitMC/FDPClient.
     private final IntegerValue aac5PursePacketsValue = new IntegerValue("AAC5-Purse", 7, 3, 20, () -> modeValue.get().equalsIgnoreCase("aac5-vanilla"));
+
+    private final BoolValue devCollide = new BoolValue("Dev-Collide", false, () -> modeValue.get().equalsIgnoreCase("dev"));
 
     private final IntegerValue clipDelay = new IntegerValue("Clip-DelayTick", 25, 1, 50, () -> modeValue.get().equalsIgnoreCase("clip"));
     private final FloatValue clipH = new FloatValue("Clip-Horizontal", 7.9F, 0, 10, () -> modeValue.get().equalsIgnoreCase("clip"));
@@ -215,6 +216,7 @@ public class Fly extends Module {
     private int pearlState = 0;
 
     private boolean wasDead;
+    public boolean isFlagged;
 
     private int boostTicks, dmgCooldown = 0;
     private int verusJumpTimes = 0;
@@ -320,6 +322,10 @@ public class Fly extends Module {
         wdTick = 0;
 
         switch (mode.toLowerCase()) {
+        	case "dev":
+               isVclip = true;
+               isFlagged = false;
+               break;
         	case "custom":
             /*
                * if(customUseVclip.get()) {
@@ -570,12 +576,10 @@ public class Fly extends Module {
                 }
                 break;
             case "dev":
-                mc.timer.timerSpeed = 1.0f;
-                mc.thePlayer.motionY = 0;
-                if (mc.thePlayer.ticksExisted % 17 == 0) {
-                    double[] expectMoves = getMoves((double)4.0, (double)-1.0);
-                    if (mc.theWorld.getCollidingBoundingBoxes(mc.thePlayer, mc.thePlayer.getEntityBoundingBox().offset(expectMoves[0], expectMoves[1], expectMoves[2]).expand(0, 0, 0)).isEmpty())
-                        hClip(expectMoves[0], expectMoves[1], expectMoves[2]);
+                if(isVclip) {
+                	mc.timer.timerSpeed = 1.35f;
+                    mc.thePlayer.motionY = 0;
+                    MovementUtils.speed(MovementUtils.getBaseMoveSpeed() + 0.08);
                 }
                 break;
             case "damage":
@@ -1168,6 +1172,14 @@ public class Fly extends Module {
             if (mode.equalsIgnoreCase("clip") && clipGroundSpoof.get())
                 packetPlayer.onGround = true;
 
+            if(mode.equalsIgnoreCase("dev") && isVclip) {
+            	packetPlayer.onGround = false;
+                packetPlayer.isMoving = false;
+                packetPlayer.y = 0.093;
+                isFlagged = true;
+                isVclip = false;
+            }
+
             if ((mode.equalsIgnoreCase("motion") || mode.equalsIgnoreCase("creative")) || mode.equalsIgnoreCase("custom") && groundSpoofValue.get())
                 packetPlayer.onGround = true;
 
@@ -1242,8 +1254,8 @@ public class Fly extends Module {
             case "clip":
                 if (clipNoMove.get()) event.zeroXZ();
                 break;
-            case "watchdog2":
-                event.zeroXZ();
+            case "dev":
+                if(!isFlagged) event.zeroXZ();
                 break;
             case "custom":
                // if(customUseVclip.get() && !isVclip && noMoveOnVclip.get()) event.zeroXZ();
@@ -1337,7 +1349,7 @@ public class Fly extends Module {
         if (event.getBlock() instanceof BlockAir && mode.equalsIgnoreCase("Jump") && event.getY() < startY)
             event.setBoundingBox(AxisAlignedBB.fromBounds(event.getX(), event.getY(), event.getZ(), event.getX() + 1, startY, event.getZ() + 1));
 
-        if (event.getBlock() instanceof BlockAir && ((mode.equalsIgnoreCase("collide") && !mc.thePlayer.isSneaking()) || mode.equalsIgnoreCase("veruslowhop")))
+        if (event.getBlock() instanceof BlockAir && ((mode.equalsIgnoreCase("collide") && !mc.thePlayer.isSneaking()) || mode.equalsIgnoreCase("veruslowhop") || mode.equalsIgnoreCase("dev") && devCollide.get()))
             event.setBoundingBox(new AxisAlignedBB(-2, -1, -2, 2, 1, 2).offset(event.getX(), event.getY(), event.getZ()));
 
         if (event.getBlock() instanceof BlockAir && (mode.equalsIgnoreCase("Hypixel") ||
