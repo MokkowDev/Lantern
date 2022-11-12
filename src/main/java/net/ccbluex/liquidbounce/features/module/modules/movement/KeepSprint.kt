@@ -19,6 +19,6 @@ class KeepSprint: Module() {
         val packet = event.packet
         if (packet is C0BPacketEntityAction) 
             if (packet.action == C0BPacketEntityAction.Action.STOP_SPRINTING)
-                event.cancelEvent()
+                mc.thePlayer.setSprinting(true)
     }
 }

@@ -46,7 +46,11 @@ public class HypixelStrafeLess extends SpeedMode {
     	final Speed speed = LiquidBounce.moduleManager.getModule(Speed.class);
         if(speed == null) return;
 
-        if(mc.thePlayer.onGround && speed.fastFall.get() && Math.abs(event.getY()) < 0.00481) {
+        if(Math.round(event.getY() * 1000) / 1000.0 == 0.165 && speed.fastFall.get()) {
+			event.setY(mc.thePlayer.motionY = 0)
+        }
+
+        if(mc.thePlayer.onGround && speed.fastFall.get() && Math.abs(event.getY()) < 0.005) {
         	event.setY(mc.thePlayer.motionY = -0.16);
         }
     }
