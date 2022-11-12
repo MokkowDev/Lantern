@@ -47,7 +47,7 @@ public class HypixelStrafeLess extends SpeedMode {
         if(speed == null) return;
 
         if(Math.round(event.getY() * 1000) / 1000.0 == 0.165 && speed.fastFall.get()) {
-			event.setY(mc.thePlayer.motionY = 0)
+			event.setY(mc.thePlayer.motionY = 0);
         }
 
         if(mc.thePlayer.onGround && speed.fastFall.get() && Math.abs(event.getY()) < 0.005) {

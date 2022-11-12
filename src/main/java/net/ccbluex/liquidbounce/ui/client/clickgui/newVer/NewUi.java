@@ -123,9 +123,9 @@ public class NewUi extends GuiScreen {
             Fonts.fontLarge.drawString(mc.thePlayer.getGameProfile().getName(), 100, 78 - Fonts.fontLarge.FONT_HEIGHT + 15, -1);
 
         if (Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-             dWheel = -1
+             dWheel = -1;
         } else if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-         	dWheel = 1
+         	dWheel = 1;
         }
 
         if (searchElement.drawBox(mouseX, mouseY, accentColor)) {
@@ -142,9 +142,9 @@ public class NewUi extends GuiScreen {
                 endYAnim = NewGUI.fastRenderValue.get() ? startY + elementHeight - 6F : AnimationUtils.animate(startY + elementHeight - 6F, endYAnim, (endYAnim - (startY + elementHeight - 5F) < 0 ? 0.65F : 0.55F) * RenderUtils.deltaTime * 0.025F);
 
                 if (Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-                     dWheel = -1
+                     dWheel = -1;
                 } else if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-                 	dWheel = 1
+                 	dWheel = 1;
                 }
 
                 ce.drawPanel(mouseX, mouseY, 230, 50, width - 260, height - 80, dWheel, accentColor);
