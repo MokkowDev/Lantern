@@ -14,7 +14,7 @@ import net.ccbluex.liquidbounce.utils.misc.StringUtils
 import java.io.File
 import java.io.IOException
 
-class LocalAutoSettingsCommand : Command("localautosettings", arrayOf("localsetting", "localsettings", "localconfig")) {
+class LocalAutoSettingsCommand : Command("config", arrayOf("localsetting", "localsettings", "localconfig", "localautosettings")) {
     /**
      * Execute commands with provided [args]
      */
@@ -27,12 +27,12 @@ class LocalAutoSettingsCommand : Command("localautosettings", arrayOf("localsett
 
                         if (scriptFile.exists()) {
                             try {
-                                chat("§9Loading settings...")
+                                chat("§9Loading Config " + args[2])
                                 val settings = scriptFile.readText()
-                                chat("§9Set settings...")
+                                chat("§9Setting up...")
                                 SettingsUtils.executeScript(settings)
-                                chat("§6Settings applied successfully.")
-                                LiquidBounce.hud.addNotification(Notification("Updated Settings", Notification.Type.SUCCESS))
+                                chat("§6Config " + args[2] + " loaded.")
+                                LiquidBounce.hud.addNotification(Notification("Loaded Config.", Notification.Type.SUCCESS))
                                 playEdit()
                             } catch (e: IOException) {
                                 e.printStackTrace()
@@ -41,11 +41,11 @@ class LocalAutoSettingsCommand : Command("localautosettings", arrayOf("localsett
                             return
                         }
 
-                        chat("§cSettings file does not exist!")
+                        chat("§cConfig " + args[2] + " does not exist!")
                         return
                     }
 
-                    chatSyntax("localautosettings load <name>")
+                    chatSyntax("config load <name>")
                     return
                 }
 
@@ -63,7 +63,7 @@ class LocalAutoSettingsCommand : Command("localautosettings", arrayOf("localsett
                                     return
                                 }
 
-                            val option = if (args.size > 3) StringUtils.toCompleteString(args, 3).toLowerCase() else "values"
+                            val option = if (args.size > 3) StringUtils.toCompleteString(args, 3).toLowerCase() else "values states"
                             val values = option.contains("all") || option.contains("values")
                             val binds = option.contains("all") || option.contains("binds")
                             val states = option.contains("all") || option.contains("states")
@@ -72,19 +72,19 @@ class LocalAutoSettingsCommand : Command("localautosettings", arrayOf("localsett
                                 return
                             }
 
-                            chat("§9Creating settings...")
+                            chat("§9Creating Config...")
                             val settingsScript = SettingsUtils.generateScript(values, binds, states)
-                            chat("§9Saving settings...")
+                            chat("§9Saving Config...")
                             scriptFile.writeText(settingsScript)
-                            chat("§6Settings saved successfully.")
+                            chat("§6Config " + args[2] + " created successfully.")
                         } catch (throwable: Throwable) {
-                            chat("§cFailed to create local config: §3${throwable.message}")
-                            ClientUtils.getLogger().error("Failed to create local config.", throwable)
+                            chat("§cFailed to create config: §3${throwable.message}")
+                            ClientUtils.getLogger().error("Failed to create config.", throwable)
                         }
                         return
                     }
 
-                    chatSyntax("localsettings save <name> [all/values/binds/states]...")
+                    chatSyntax("config save <name> [all/values/binds/states]...")
                     return
                 }
 
@@ -94,30 +94,30 @@ class LocalAutoSettingsCommand : Command("localautosettings", arrayOf("localsett
 
                         if (scriptFile.exists()) {
                             scriptFile.delete()
-                            chat("§6Settings file deleted successfully.")
+                            chat("§6Config " + args[2] + " deleted successfully.")
                             return
                         }
 
-                        chat("§cSettings file does not exist!")
+                        chat("§cConfig " + args[2] + " does not exist!")
                         return
                     }
 
-                    chatSyntax("localsettings delete <name>")
+                    chatSyntax("config delete <name>")
                     return
                 }
 
                 args[1].equals("list", ignoreCase = true) -> {
-                    chat("§cSettings:")
+                    chat("§cConfig:")
 
                     val settings = this.getLocalSettings() ?: return
 
                     for (file in settings)
-                        chat("> " + file.name)
+                        chat("- " + file.name)
                     return
                 }
             }
         }
-        chatSyntax("localsettings <load/save/list/delete>")
+        chatSyntax("config <load/save/list/delete>")
     }
 
     override fun tabComplete(args: Array<String>): List<String> {

@@ -5,6 +5,7 @@ nn client fr bro
 
 ## Credits
 [LiquidBounce+](https://github.com/WYSI-Foundation/LiquidBouncePlus) - Base
+[ViaForge](https://github.com/RejectedVia/ViaForge) - Version switcher (Portal)
 
 ### LiquidBounce's contact info
 Website: https://liquidbounce.net \
