@@ -2,9 +2,9 @@ name: build
 
 on:
   push:
-    branches: [ thank-you ]
+    branches: [ master ]
   pull_request:
-    branches: [ thank-you ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -27,5 +27,5 @@ jobs:
       - name: Upload build artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: mossware
+          name: lantern
           path: build/libs/
