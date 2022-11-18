@@ -20,6 +20,7 @@ class Timer : Module() {
 
     private val speedValue = FloatValue("Speed", 2F, 0.1F, 10F, "x")
     private val onMoveValue = BoolValue("OnMove", true)
+    private val onGroundValue = BoolValue("OnGroundOnly", false)
     private val autoDisableValue = BoolValue("AutoDisable", true)
 
     override fun onDisable() {
@@ -29,8 +30,7 @@ class Timer : Module() {
     @EventTarget
     fun onUpdate(event: UpdateEvent) {
         if (mc.thePlayer == null || mc.theWorld == null) return
-
-        if(MovementUtils.isMoving() || !onMoveValue.get()) {
+        if(MovementUtils.isMoving() || !onMoveValue.get() || onGroundValue.get() && mc.thePlayer.onGround) {
             mc.timer.timerSpeed = speedValue.get()
             return
         }

@@ -38,7 +38,7 @@ import static org.lwjgl.opengl.GL11.*;
 public class AntiVoid extends Module {
 
     public final ListValue voidDetectionAlgorithm = new ListValue("Detect-Method", new String[]{"Collision", "Predict"}, "Collision");
-    public final ListValue setBackModeValue = new ListValue("SetBack-Mode", new String[]{"Teleport", "FlyFlag", "IllegalPacket", "IllegalTeleport", "StopMotion", "Position", "Edit", "SpoofBack"}, "Teleport");
+    public final ListValue setBackModeValue = new ListValue("SetBack-Mode", new String[]{"Teleport", "FlyFlag", "IllegalPacket", "IllegalTeleport", "StopMotion", "Position", "Edit", "SpoofBack", "MotionY"}, "Teleport");
     public final IntegerValue maxFallDistSimulateValue = new IntegerValue("Predict-CheckFallDistance", 255, 0, 255, "m", () -> voidDetectionAlgorithm.get().equalsIgnoreCase("predict"));
     public final IntegerValue maxFindRangeValue = new IntegerValue("Predict-MaxFindRange", 60, 0, 255, "m", () -> voidDetectionAlgorithm.get().equalsIgnoreCase("predict"));
     public final IntegerValue illegalDupeValue = new IntegerValue("Illegal-Dupe", 1, 1, 5, "x", () -> setBackModeValue.get().toLowerCase().contains("illegal"));
@@ -79,6 +79,9 @@ public class AntiVoid extends Module {
                 if (mc.thePlayer.fallDistance >= setBackFallDistValue.get()) {
                     shouldStopMotion = true;
                     switch (setBackModeValue.get()) {
+                    case "MotionY":
+                        mc.thePlayer.motionY = 1F;
+                        mc.thePlayer.fallDistance = 0;
                     case "IllegalTeleport":
                         mc.thePlayer.setPositionAndUpdate(lastX, lastY, lastZ);
                     case "IllegalPacket":
