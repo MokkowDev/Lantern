@@ -2,9 +2,9 @@ name: build
 
 on:
   push:
-    branches: [ master ]
+    branches: [ viaforge-lib-update ]
   pull_request:
-    branches: [ master ]
+    branches: [ viaforge-lib-update ]
 
 jobs:
   build:
