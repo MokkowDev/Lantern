@@ -323,8 +323,8 @@ public class Fly extends Module {
         wdTick = 0;
 
         switch (mode.toLowerCase()) {
-                case "dev":
-                  if(mc.thePlayer.onGround() && devAutojump.get()) mc.thePlayer.jump();
+                case "cringe":
+                  if(mc.thePlayer.onGround && devAutojump.get()) mc.thePlayer.jump();
                isVclip = true;
                isFlagged = false;
                break;
@@ -577,7 +577,7 @@ public class Fly extends Module {
                         hClip(expectMoves[0], expectMoves[1], expectMoves[2]);
                 }
                 break;
-            case "dev":
+            case "cringe":
                 if(isVclip) {
                     if(devAutojump.get()) mc.thePlayer.jump();
                 	mc.timer.timerSpeed = 1.35f;
@@ -1175,10 +1175,10 @@ public class Fly extends Module {
             if (mode.equalsIgnoreCase("clip") && clipGroundSpoof.get())
                 packetPlayer.onGround = true;
 
-            if(mode.equalsIgnoreCase("dev") && isVclip) {
+            if(mode.equalsIgnoreCase("cringe") && isVclip) {
             	packetPlayer.onGround = false;
                 packetPlayer.setMoving(false);
-                packetPlayer.y = 0.093;
+                packetPlayer.y = 0.087;
                 isFlagged = true;
                 isVclip = false;
             }
@@ -1257,7 +1257,7 @@ public class Fly extends Module {
             case "clip":
                 if (clipNoMove.get()) event.zeroXZ();
                 break;
-            case "dev":
+            case "cringe":
                 if(!isFlagged) event.zeroXZ();
                 break;
             case "custom":
@@ -1352,7 +1352,7 @@ public class Fly extends Module {
         if (event.getBlock() instanceof BlockAir && mode.equalsIgnoreCase("Jump") && event.getY() < startY)
             event.setBoundingBox(AxisAlignedBB.fromBounds(event.getX(), event.getY(), event.getZ(), event.getX() + 1, startY, event.getZ() + 1));
 
-        if (event.getBlock() instanceof BlockAir && ((mode.equalsIgnoreCase("collide") && !mc.thePlayer.isSneaking()) || mode.equalsIgnoreCase("veruslowhop") || mode.equalsIgnoreCase("dev") && devCollide.get()))
+        if (event.getBlock() instanceof BlockAir && ((mode.equalsIgnoreCase("collide") && !mc.thePlayer.isSneaking()) || mode.equalsIgnoreCase("veruslowhop") || mode.equalsIgnoreCase("cringe") && devCollide.get()))
             event.setBoundingBox(new AxisAlignedBB(-2, -1, -2, 2, 1, 2).offset(event.getX(), event.getY(), event.getZ()));
 
         if (event.getBlock() instanceof BlockAir && (mode.equalsIgnoreCase("Hypixel") ||
