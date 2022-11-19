@@ -247,7 +247,7 @@ class Notification(message : String, type : Type, displayLength: Long) {
                 GlStateManager.resetColor()
                 Fonts.font40.drawString(message, -x + 2, -18F - y, -1)
             }
-            "Full2" -> {
+            "full2" -> {
                 val dist = (x + 1 + 26F) - (x - 8 - textLength)
                 val kek = -x - 1 - 26F
 
