@@ -21,18 +21,17 @@ public class ClientSpoofer extends Module {
             final C17PacketCustomPayload c17 = (C17PacketCustomPayload) event.getPacket();      
             switch(modeValue.get().toLowerCase()) {
                 case "Forge": {
-                   c17.setData(newWriteBuffer("FML", true));
+                   c17.setData(newWriteBuffer("FML"));
                    break;
                 }
               
                 case "Lunar": {
-                    c17.setChannel("REGISTER");
-                    c17.setData(newBytesBuffer("Lunar-Client", false));
+                    c17.setData(newBytesBuffer("Lunar-Client"));
                     break;
                 }
               
                 case "Geyser": {
-                    c17.setData(newBytesBuffer("Geyser", false));
+                    c17.setData(newBytesBuffer("Geyser"));
                     break;
                 }
             }
