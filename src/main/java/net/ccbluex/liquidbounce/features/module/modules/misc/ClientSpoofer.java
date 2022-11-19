@@ -32,7 +32,7 @@ public class ClientSpoofer extends Module {
               }
               
               case "Geyser": {
-                  packet.setData(newBuffer("Geyser", false));
+                  c17.setData(newBuffer("Geyser", false));
                   break;
               }
          }
