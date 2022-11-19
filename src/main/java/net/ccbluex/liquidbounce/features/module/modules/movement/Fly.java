@@ -107,7 +107,7 @@ public class Fly extends Module {
             "Jump",
             "Derp",
             "Collide",
-            "Dev"
+            "Cringe"
     }, "Motion");
 
     private final FloatValue vanillaSpeedValue = new FloatValue("Speed", 2F, 0F, 5F, () -> { 
@@ -149,7 +149,8 @@ public class Fly extends Module {
     private final ListValue aac5Packet = new ListValue("AAC5-Packet", new String[]{"Original", "Rise", "Other"}, "Original", () -> modeValue.get().equalsIgnoreCase("aac5-vanilla")); // Original is from UnlegitMC/FDPClient.
     private final IntegerValue aac5PursePacketsValue = new IntegerValue("AAC5-Purse", 7, 3, 20, () -> modeValue.get().equalsIgnoreCase("aac5-vanilla"));
 
-    private final BoolValue devCollide = new BoolValue("Dev-Collide", false, () -> modeValue.get().equalsIgnoreCase("dev"));
+    private final BoolValue devCollide = new BoolValue("Dev-Collide", true, () -> modeValue.get().equalsIgnoreCase("dev"));
+    private final BoolValue devAutojump = new BoolValue("Dev-AutoJump", true, () -> modeValue.get().equalsIgnoreCase("dev"));
 
     private final IntegerValue clipDelay = new IntegerValue("Clip-DelayTick", 25, 1, 50, () -> modeValue.get().equalsIgnoreCase("clip"));
     private final FloatValue clipH = new FloatValue("Clip-Horizontal", 7.9F, 0, 10, () -> modeValue.get().equalsIgnoreCase("clip"));
@@ -322,7 +323,8 @@ public class Fly extends Module {
         wdTick = 0;
 
         switch (mode.toLowerCase()) {
-        	case "dev":
+                case "dev":
+                  if(mc.thePlayer.onGround() && devAutojump.get()) mc.thePlayer.jump();
                isVclip = true;
                isFlagged = false;
                break;
@@ -577,6 +579,7 @@ public class Fly extends Module {
                 break;
             case "dev":
                 if(isVclip) {
+                    if(devAutojump.get()) mc.thePlayer.jump();
                 	mc.timer.timerSpeed = 1.35f;
                     mc.thePlayer.motionY = 0;
                     MovementUtils.strafe((float) MovementUtils.getBaseMoveSpeed() + 0.08f);
