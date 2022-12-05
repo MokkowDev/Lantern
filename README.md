@@ -1,11 +1,15 @@
 <img width="120" height="120" align="left" style="float: left; margin: 0 10px 0 0;" alt="lantern client image" src="src/main/resources/assets/minecraft/liquidbounce%2B/big.png">
 
 # Lantern Client
-nn client fr bro
+Just a client
 
 ## Credits
-[LiquidBounce+](https://github.com/WYSI-Foundation/LiquidBouncePlus) - Base
-[ViaForge](https://github.com/RejectedVia/ViaForge) - Version switcher (Portal)
+[LiquidBounce+](https://github.com/WYSI-Foundation/LiquidBouncePlus) - Base \
+[ViaForge](https://github.com/RejectedVia/ViaForge) - Version switcher
+
+### Download
+Want to download but no github account? Now you can use this site to download beta version of lantern (for now)
+[Click here](https://lantern.ilovecatboys.ml)
 
 ### LiquidBounce's contact info
 Website: https://liquidbounce.net \
