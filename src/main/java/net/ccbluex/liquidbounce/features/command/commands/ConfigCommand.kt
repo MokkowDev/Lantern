@@ -104,7 +104,7 @@ class ConfigCommand : Command("config", arrayOf("localsetting", "localsettings",
                 args[1].equals("list", ignoreCase = true) -> {
                     chat("§cConfig:")
 
-                    val settings = this.getLocalSettings() ?: return
+                    val settings = this.getConfigs() ?: return
 
                     for (file in settings)
                         chat("- " + file.name)
