@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-@ModuleInfo(name = "Skeletal", description = "idk", category = ModuleCategory.RENDER)
+@ModuleInfo(name = "Skeletal", description = "Skeleton meme lolol", category = ModuleCategory.RENDER)
 public class Skeletal extends Module {
 
     private final Map playerRotationMap = new WeakHashMap();
@@ -31,7 +31,7 @@ public class Skeletal extends Module {
     private final IntegerValue red = new IntegerValue("Red", 255, 0, 255);
     private final IntegerValue green = new IntegerValue("Green", 255, 0, 255);
     private final IntegerValue blue = new IntegerValue("Blue", 255, 0, 255);
-
+    
     private final BoolValue smoothLines = new BoolValue("SmoothLines", true);
 
     @EventTarget

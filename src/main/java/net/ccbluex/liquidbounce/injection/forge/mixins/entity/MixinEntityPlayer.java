@@ -11,6 +11,9 @@ import net.ccbluex.liquidbounce.features.module.modules.movement.LongJump;
 import net.ccbluex.liquidbounce.features.module.modules.world.Scaffold;
 import net.ccbluex.liquidbounce.utils.MovementUtils;
 import net.minecraft.client.Minecraft;
+
+import dev.tr7zw.waveycapes.CapeHolder;
+import dev.tr7zw.waveycapes.sim.StickSimulation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.PlayerCapabilities;
 import net.minecraft.item.ItemStack;
@@ -59,5 +62,19 @@ public abstract class MixinEntityPlayer extends MixinEntityLivingBase {
 
     @Shadow
     public abstract boolean isPlayerSleeping();
+
+    private StickSimulation stickSimulation = new StickSimulation();
+    
+    @Override
+    public StickSimulation getSimulation() {
+        return stickSimulation;
+    }
+
+    @Inject(method = "onUpdate", at = @At("HEAD"))
+    private void moveCloakUpdate(CallbackInfo info) {
+        if((Object)this instanceof EntityPlayer) {
+            simulate((EntityPlayer)(Object)this);
+        }
+    }
 
 }

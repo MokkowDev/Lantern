@@ -5,6 +5,8 @@
  */
 package net.ccbluex.liquidbounce.injection.forge.mixins.render;
 
+import dev.tr7zw.waveycapes.renderlayers.CustomCapeRenderLayer;
+
 import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.renderer.entity.RenderPlayer;
 import org.spongepowered.asm.mixin.Mixin;
@@ -18,4 +20,10 @@ public class MixinRenderPlayer {
     private void resetArmState(ModelPlayer modelPlayer, boolean value) {
         modelPlayer.isRiding = modelPlayer.isSneak = false;
     }
+    
+    @Inject(method = "<init>*", at = @At("RETURN"))
+    public void onCreate(CallbackInfo info) {
+        addLayer(new CustomCapeRenderLayer((RenderPlayer)(Object)this, getMainModel()));
+    }
+    
 }
