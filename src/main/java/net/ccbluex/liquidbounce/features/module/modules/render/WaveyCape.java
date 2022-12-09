@@ -20,11 +20,11 @@ import java.awt.*;
 @ModuleInfo(name = "WaveyCape", description = "idk bro", category = ModuleCategory.RENDER)
 public class WaveyCape extends Module {
 
-    private final ListValue capeStyle = new ListValue("Style", new String[] {"Blocky", "Smooth"}, "Smooth");
-    private final ListValue windMode = new ListValue("WindMode", new String[] {"Waves", "None"}, "None");
-    private final ListValue capeMovement = new ListValue("Movement", new String[] {"Vanila", "Simulation"}, "Simulation");
-    private final IntegerValue capeGravity = new IntegerValue("Gravity", 25, 5, 32);
-	private final IntegerValue capeHeight = new IntegerValue("HeightMultiplier", 6, 4, 16);
+    public final ListValue capeStyle = new ListValue("Style", new String[] {"Blocky", "Smooth"}, "Smooth");
+    public final ListValue windMode = new ListValue("WindMode", new String[] {"Waves", "None"}, "None");
+    public final ListValue capeMovement = new ListValue("Movement", new String[] {"Vanila", "Simulation"}, "Simulation");
+    public final IntegerValue capeGravity = new IntegerValue("Gravity", 25, 5, 32);
+	public final IntegerValue capeHeight = new IntegerValue("HeightMultiplier", 6, 4, 16);
 	
     @Override
     public void onEnable() {

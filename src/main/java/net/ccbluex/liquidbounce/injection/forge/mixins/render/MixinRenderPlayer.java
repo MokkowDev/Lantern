@@ -24,7 +24,7 @@ public class MixinRenderPlayer {
     
     @Inject(method = "<init>*", at = @At("RETURN"))
     public void onCreate(CallbackInfo info) {
-        addLayer(new CustomCapeRenderLayer((RenderPlayer)(Object)this, getMainModel()));
+        this.addLayer(new CustomCapeRenderLayer((RenderPlayer)(Object)this, getMainModel()));
     }
     
 }

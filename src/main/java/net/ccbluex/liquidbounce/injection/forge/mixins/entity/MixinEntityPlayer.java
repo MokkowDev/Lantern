@@ -65,7 +65,6 @@ public abstract class MixinEntityPlayer extends MixinEntityLivingBase {
 
     private StickSimulation stickSimulation = new StickSimulation();
     
-    @Override
     public StickSimulation getSimulation() {
         return stickSimulation;
     }
@@ -73,7 +72,7 @@ public abstract class MixinEntityPlayer extends MixinEntityLivingBase {
     @Inject(method = "onUpdate", at = @At("HEAD"))
     private void moveCloakUpdate(CallbackInfo info) {
         if((Object)this instanceof EntityPlayer) {
-            simulate((EntityPlayer)(Object)this);
+            getSimulation().simulate((EntityPlayer)(Object)this);
         }
     }
 
