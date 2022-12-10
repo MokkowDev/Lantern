@@ -17,7 +17,7 @@ import net.ccbluex.liquidbounce.value.ListValue;
 
 import java.awt.*;
 
-@ModuleInfo(name = "WaveyCape", description = "idk bro", category = ModuleCategory.RENDER)
+@ModuleInfo(name = "WaveyCape", description = "idk bro", category = ModuleCategory.RENDER, canEnable = false)
 public class WaveyCape extends Module {
 
     public final ListValue capeStyle = new ListValue("Style", new String[] {"Blocky", "Smooth"}, "Smooth");
