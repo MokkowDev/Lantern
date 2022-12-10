@@ -9,6 +9,8 @@ import net.ccbluex.liquidbounce.utils.render.waveycape.Mth;
 import net.ccbluex.liquidbounce.utils.render.waveycape.PoseStack;
 import net.ccbluex.liquidbounce.utils.render.waveycape.Vector3f;
 import net.ccbluex.liquidbounce.utils.render.waveycape.Vector4f;
+import net.ccbluex.liquidbounce.features.module.modules.render.WaveyCape;
+import net.ccbluex.liquidbounce.LiquidBounce;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;

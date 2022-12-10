@@ -9,6 +9,7 @@ import dev.tr7zw.waveycapes.renderlayers.CustomCapeRenderLayer;
 
 import net.minecraft.client.model.ModelPlayer;
 import net.minecraft.client.renderer.entity.RenderPlayer;
+import net.minecraft.client.renderer.entity.RendererLivingEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,7 +25,7 @@ public class MixinRenderPlayer {
     
     @Inject(method = "<init>*", at = @At("RETURN"))
     public void onCreate(CallbackInfo info) {
-        this.addLayer(new CustomCapeRenderLayer((RenderPlayer)(Object)this, getMainModel()));
+        RendererLivingEntity.addLayer(new CustomCapeRenderLayer((RenderPlayer)(Object)this, RendererLivingEntity.getMainModel()));
     }
     
 }

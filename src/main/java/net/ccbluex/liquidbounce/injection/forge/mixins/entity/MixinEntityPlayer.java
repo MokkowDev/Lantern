@@ -72,7 +72,7 @@ public abstract class MixinEntityPlayer extends MixinEntityLivingBase {
     @Inject(method = "onUpdate", at = @At("HEAD"))
     private void moveCloakUpdate(CallbackInfo info) {
         if((Object)this instanceof EntityPlayer) {
-            getSimulation().simulate((EntityPlayer)(Object)this);
+            CapeHolder.simulate((EntityPlayer)(Object)this);
         }
     }
 
