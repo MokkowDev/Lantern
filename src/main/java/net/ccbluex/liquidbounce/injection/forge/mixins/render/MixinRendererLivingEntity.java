@@ -42,11 +42,6 @@ public abstract class MixinRendererLivingEntity extends MixinRender {
     @Shadow
     protected ModelBase mainModel;
 
-    @Inject(method = "addLayer", at = @At("HEAD"), cancellable = true)
-    private void addLayer(RenderLayer<T, M> renderLayer, CallbackInfoReturnable<Boolean> info) {
-         info.cancel();
-    }
-
     @Inject(method = "doRender(Lnet/minecraft/entity/EntityLivingBase;DDDFF)V", at = @At("HEAD"), cancellable = true)
     private <T extends EntityLivingBase> void injectChamsPre(T entity, double x, double y, double z, float entityYaw, float partialTicks, CallbackInfo callbackInfo) {
         final Chams chams = LiquidBounce.moduleManager.getModule(Chams.class);
