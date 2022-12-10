@@ -63,6 +63,8 @@ public abstract class MixinEntityPlayer extends MixinEntityLivingBase {
     @Shadow
     public abstract boolean isPlayerSleeping();
 
+    private CapeHolder capeHolder = new CapeHolder();
+
     private StickSimulation stickSimulation = new StickSimulation();
     
     public StickSimulation getSimulation() {
@@ -72,7 +74,7 @@ public abstract class MixinEntityPlayer extends MixinEntityLivingBase {
     @Inject(method = "onUpdate", at = @At("HEAD"))
     private void moveCloakUpdate(CallbackInfo info) {
         if((Object)this instanceof EntityPlayer) {
-            CapeHolder.simulate((EntityPlayer)(Object)this);
+            capeHolder.simulate((EntityPlayer)(Object)this);
         }
     }
 

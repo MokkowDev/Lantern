@@ -18,6 +18,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(RenderPlayer.class)
 public class MixinRenderPlayer {
+	
+	RendererLivingEntity rendererLivingEntity = new RenderLivingEntity();
+	
     @Redirect(method = "renderRightArm", at = @At(value = "FIELD", target = "Lnet/minecraft/client/model/ModelPlayer;isSneak:Z", ordinal = 0))
     private void resetArmState(ModelPlayer modelPlayer, boolean value) {
         modelPlayer.isRiding = modelPlayer.isSneak = false;
@@ -25,7 +28,7 @@ public class MixinRenderPlayer {
     
     @Inject(method = "<init>*", at = @At("RETURN"))
     public void onCreate(CallbackInfo info) {
-        RendererLivingEntity.addLayer(new CustomCapeRenderLayer((RenderPlayer)(Object)this, RendererLivingEntity.getMainModel()));
+        rendererLivingEntity.addLayer(new CustomCapeRenderLayer((RenderPlayer)(Object)this, RendererLivingEntity.getMainModel()));
     }
     
 }

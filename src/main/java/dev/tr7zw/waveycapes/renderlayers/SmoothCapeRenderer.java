@@ -23,11 +23,12 @@ import net.ccbluex.liquidbounce.features.module.modules.render.WaveyCape;
 
 public class SmoothCapeRenderer {
 
+    final WaveyCape waveyCape = LiquidBounce.moduleManager.getModule(WaveyCape.class);
+
     public void renderSmoothCape(CustomCapeRenderLayer layer, AbstractClientPlayer abstractClientPlayer, float delta) {
         WorldRenderer worldrenderer = Tessellator.getInstance().getWorldRenderer();
         worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_NORMAL);
         PoseStack poseStack = new PoseStack();
-        final WaveyCape waveyCape = LiquidBounce.moduleManager.getModule(WaveyCape.class);
         poseStack.pushPose();
         
         Matrix4f oldPositionMatrix = null;
