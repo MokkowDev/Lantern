@@ -111,7 +111,7 @@ public class Fly extends Module {
     }, "Motion");
 
     private final FloatValue vanillaSpeedValue = new FloatValue("Speed", 2F, 0F, 5F, () -> { 
-        return (modeValue.get().equalsIgnoreCase("motion") || modeValue.get().equalsIgnoreCase("damage") || modeValue.get().equalsIgnoreCase("pearl") || modeValue.get().equalsIgnoreCase("aac5-vanilla") || modeValue.get().equalsIgnoreCase("bugspartan") || modeValue.get().equalsIgnoreCase("keepalive") || modeValue.get().equalsIgnoreCase("derp") || modeValue.get().equalsIgnoreCase("custom"));
+        return (modeValue.get().equalsIgnoreCase("motion") || modeValue.get().equalsIgnoreCase("damage") || modeValue.get().equalsIgnoreCase("pearl") || modeValue.get().equalsIgnoreCase("aac5-vanilla") || modeValue.get().equalsIgnoreCase("bugspartan") || modeValue.get().equalsIgnoreCase("keepalive") || modeValue.get().equalsIgnoreCase("derp") || modeValue.get().equalsIgnoreCase("custom") || devSpeed.get());
     });
     private final FloatValue vanillaVSpeedValue = new FloatValue("V-Speed", 2F, 0F, 5F, () -> modeValue.get().equalsIgnoreCase("motion") || modeValue.get().equalsIgnoreCase("custom"));
     private final FloatValue vanillaMotionYValue = new FloatValue("Y-Motion", 0F, -1F, 1F, () -> modeValue.get().equalsIgnoreCase("motion") || modeValue.get().equalsIgnoreCase("custom"));
@@ -149,8 +149,11 @@ public class Fly extends Module {
     private final ListValue aac5Packet = new ListValue("AAC5-Packet", new String[]{"Original", "Rise", "Other"}, "Original", () -> modeValue.get().equalsIgnoreCase("aac5-vanilla")); // Original is from UnlegitMC/FDPClient.
     private final IntegerValue aac5PursePacketsValue = new IntegerValue("AAC5-Purse", 7, 3, 20, () -> modeValue.get().equalsIgnoreCase("aac5-vanilla"));
 
-    private final BoolValue devCollide = new BoolValue("Dev-Collide", true, () -> modeValue.get().equalsIgnoreCase("dev"));
+    private final BoolValue devCollide = new BoolValue("Dev-Collide", true, () -> modeValue.get().equalsIgnoreCase("cringe"));
     private final BoolValue devAutojump = new BoolValue("Dev-AutoJump", true, () -> modeValue.get().equalsIgnoreCase("dev"));
+    private final BoolValue devSpeed = new BoolValue("Dev-UseVanillaSpeed", false, () -> modeValue.get().equalsIgnoreCase("cringe"));
+    private final BoolValue devTimer = new BoolValue("Dev-UseTimer", true, () -> modeValue.get().equalsIgnoreCase("cringe") && !devSpeed.get());
+     
 
     private final IntegerValue clipDelay = new IntegerValue("Clip-DelayTick", 25, 1, 50, () -> modeValue.get().equalsIgnoreCase("clip"));
     private final FloatValue clipH = new FloatValue("Clip-Horizontal", 7.9F, 0, 10, () -> modeValue.get().equalsIgnoreCase("clip"));
@@ -580,9 +583,13 @@ public class Fly extends Module {
             case "cringe":
                 if(isVclip) {
                     if(devAutojump.get()) mc.thePlayer.jump();
-                	mc.timer.timerSpeed = 1.35f;
+                    if(devTimer.get()) mc.timer.timerSpeed = 1.43f;
                     mc.thePlayer.motionY = 0;
-                    MovementUtils.strafe((float) MovementUtils.getBaseMoveSpeed() + 0.08f);
+                    if(devSpeed.get()) {
+                       MovementUtils.strafe(vanillaSpeed);
+                    } else {
+                       MovementUtils.strafe((float) MovementUtils.getBaseMoveSpeed() + 0.10f);
+                    }
                 }
                 break;
             case "damage":
@@ -1178,7 +1185,7 @@ public class Fly extends Module {
             if(mode.equalsIgnoreCase("cringe") && isVclip) {
             	packetPlayer.onGround = false;
                 packetPlayer.setMoving(false);
-                packetPlayer.y = 0.087;
+                packetPlayer.y = 0.0937;
                 isFlagged = true;
                 isVclip = false;
             }
