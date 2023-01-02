@@ -147,7 +147,7 @@ class Notification(message : String, type : Type, displayLength: Long) {
     constructor(message: String, displayLength: Long) : this(message, Type.INFO, displayLength)
 
     enum class Type {
-        SUCCESS, INFO, WARNING, ERROR
+        SUCCESS, INFO, WARNING, ERROR, ENABLED, DISABLED
     }
 
     enum class FadeState {
@@ -178,6 +178,8 @@ class Notification(message : String, type : Type, displayLength: Long) {
         val enumColor = when (type) {
                             Type.SUCCESS -> Color(80, 255, 80).rgb
                             Type.ERROR -> Color(255, 80, 80).rgb
+                            Type.ENABLED -> Color(80, 255, 80).rgb
+                            Type.DISABLED -> Color(255, 80, 80).rgb
                             Type.INFO -> Color(255, 255, 255).rgb
                             Type.WARNING -> Color(255, 255, 0).rgb
                         }
@@ -208,6 +210,8 @@ class Notification(message : String, type : Type, displayLength: Long) {
                 RenderUtils.customRounded(-x + 8F + textLength, -y, -x - 2F, -18F - y, 0F, 3F, 3F, 0F, backgroundColor.rgb)
                 RenderUtils.customRounded(-x - 2F, -y, -x - 5F, -18F - y, 3F, 0F, 0F, 3F, when(type) {
                     Type.SUCCESS -> Color(80, 255, 80).rgb
+                    Type.ENABLED -> Color(80, 255, 80).rgb
+                    Type DISABLED -> Color(255, 80, 80).rgb
                     Type.ERROR -> Color(255, 80, 80).rgb
                     Type.INFO -> Color(255, 255, 255).rgb
                     Type.WARNING -> Color(255, 255, 0).rgb
@@ -235,6 +239,8 @@ class Notification(message : String, type : Type, displayLength: Long) {
                 GL11.glPushMatrix()
                 GlStateManager.disableAlpha()
                 RenderUtils.drawImage2(when (type) {
+                    Type.ENABLED -> imgSuccess
+                    Type.DISABLED -> imgError
                     Type.SUCCESS -> imgSuccess
                     Type.ERROR -> imgError
                     Type.WARNING -> imgWarning
@@ -271,6 +277,8 @@ class Notification(message : String, type : Type, displayLength: Long) {
                 GL11.glPushMatrix()
                 GlStateManager.disableAlpha()
                 RenderUtils.drawImage2(when (type) {
+                    Type.ENABLED -> imgSuccess
+                    Type.DISABLED -> imgError
                     Type.SUCCESS -> imgSuccess
                     Type.ERROR -> imgError
                     Type.WARNING -> imgWarning
@@ -307,6 +315,8 @@ class Notification(message : String, type : Type, displayLength: Long) {
                 GL11.glPushMatrix()
                 GlStateManager.disableAlpha()
                 RenderUtils.drawImage2(when (type) {
+                    Type.ENABLED -> newSuccess
+                    Type.DISABLED -> newError
                     Type.SUCCESS -> newSuccess
                     Type.ERROR -> newError
                     Type.WARNING -> newWarning
@@ -317,6 +327,8 @@ class Notification(message : String, type : Type, displayLength: Long) {
 
                 GlStateManager.resetColor()
                 Fonts.font40.drawString(when (type) {
+                    Type.ENABLED -> "Enabled"
+                    Type.DISABLED -> "Disabled"
                     Type.SUCCESS -> "Success!"
                     Type.ERROR -> "Error!"
                     Type.WARNING -> "Warning!"
@@ -333,18 +345,24 @@ class Notification(message : String, type : Type, displayLength: Long) {
                 RenderUtils.originalRoundedRect(1F, -1F, 159F, notifHeight + (if (barMaterial) 2F else 0F) + 1F, 1F, when (type) {
                         Type.SUCCESS -> Color(72, 210, 48, 70).rgb
                         Type.ERROR -> Color(227, 28, 28, 70).rgb
+                        Type.ENABLED -> Color(72, 210, 48, 70).rgb
+                        Type.DISABLED -> Color(227, 28, 28, 70).rgb
                         Type.WARNING -> Color(245, 212, 25, 70).rgb
                         Type.INFO -> Color(255, 255, 255, 70).rgb
                     })
         		RenderUtils.originalRoundedRect(-1F, 1F, 161F, notifHeight + (if (barMaterial) 2F else 0F) - 1F, 1F, when (type) {
                         Type.SUCCESS -> Color(72, 210, 48, 70).rgb
                         Type.ERROR -> Color(227, 28, 28, 70).rgb
+                        Type.ENABLED -> Color(72, 210, 48, 70).rgb
+                        Type.DISABLED -> Color(227, 28, 28, 70).rgb
                         Type.WARNING -> Color(245, 212, 25, 70).rgb
                         Type.INFO -> Color(255, 255, 255, 70).rgb
                     })
         		RenderUtils.originalRoundedRect(-0.5F, -0.5F, 160.5F, notifHeight + (if (barMaterial) 2F else 0F) + 0.5F, 1F, when (type) {
                         Type.SUCCESS -> Color(72, 210, 48, 80).rgb
                         Type.ERROR -> Color(227, 28, 28, 80).rgb
+                        Type.ENABLED -> Color(72, 210, 48, 80).rgb
+                        Type.DISABLED -> Color(227, 28, 28, 80).rgb
                         Type.WARNING -> Color(245, 212, 25, 80).rgb
                         Type.INFO -> Color(255, 255, 255, 80).rgb
                     })
@@ -354,6 +372,8 @@ class Notification(message : String, type : Type, displayLength: Long) {
                     RenderUtils.originalRoundedRect(0F, 0F, 160F, notifHeight + 2F, 1F, when (type) {
                         Type.SUCCESS -> Color(72, 210, 48, 255).rgb
                         Type.ERROR -> Color(227, 28, 28, 255).rgb
+                        Type.ENABLED -> Color(72, 210, 48, 255).rgb
+                        Type.DISABLED -> Color(227, 28, 28, 255).rgb
                         Type.WARNING -> Color(245, 212, 25, 255).rgb
                         Type.INFO -> Color(255, 255, 255, 255).rgb
                     })
@@ -361,6 +381,8 @@ class Notification(message : String, type : Type, displayLength: Long) {
                     if (fadeState == FadeState.STAY) RenderUtils.newDrawRect(0F, notifHeight, 160F * if (stayTimer.hasTimePassed(displayTime)) 1F else ((System.currentTimeMillis() - stayTimer.time).toFloat() / displayTime.toFloat()), notifHeight + 2F, when (type) {
                         Type.SUCCESS -> Color(72 + 90, 210 + 30, 48 + 90, 255).rgb
                         Type.ERROR -> Color(227 + 20, 28 + 90, 28 + 90, 255).rgb
+                        Type.ENABLED -> Color(72 + 90, 210 + 30, 48 + 90, 255).rgb
+                        Type.DISABLES -> Color(227 + 20, 28 + 90, 28 + 90, 255).rgb
                         Type.WARNING -> Color(245 - 70, 212 - 70, 25, 255).rgb
                         Type.INFO -> Color(155, 155, 155, 255).rgb
                     })
@@ -368,6 +390,8 @@ class Notification(message : String, type : Type, displayLength: Long) {
                 } else RenderUtils.originalRoundedRect(0F, 0F, 160F, notifHeight, 1F, when (type) {
                     Type.SUCCESS -> Color(72, 210, 48, 255).rgb
                     Type.ERROR -> Color(227, 28, 28, 255).rgb
+                    Type.ENABLED -> Color(72, 210, 48, 255).rgb
+                    Type.DISABLED -> Color(227, 28, 28, 255).rgb
                     Type.WARNING -> Color(245, 212, 25, 255).rgb
                     Type.INFO -> Color(255, 255, 255, 255).rgb
                 })
@@ -381,14 +405,16 @@ class Notification(message : String, type : Type, displayLength: Long) {
                 GL11.glPushMatrix()
                 GlStateManager.disableAlpha()
                 RenderUtils.drawImage3(when (type) {
+                    Type.ENABLED -> newSuccess
+                    Type.DISABLED -> newError
                     Type.SUCCESS -> newSuccess
                     Type.ERROR -> newError
                     Type.WARNING -> newWarning
                     Type.INFO -> newInfo
                 }, 9F, notifHeight / 2F - 6F, 12, 12, 
-                if (type == Type.ERROR) 1F else 0F,
-                if (type == Type.ERROR) 1F else 0F,
-                if (type == Type.ERROR) 1F else 0F, 1F)
+                if (type == Type.ERROR || type == Type.DISABLED) 1F else 0F,
+                if (type == Type.ERROR || type == Type.DISABLED) 1F else 0F,
+                if (type == Type.ERROR || type == Type.DISABLED) 1F else 0F, 1F)
                 GlStateManager.enableAlpha()
                 GL11.glPopMatrix()
 
