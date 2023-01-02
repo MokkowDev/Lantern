@@ -141,13 +141,7 @@ public class NewUi extends GuiScreen {
                 startYAnim = NewGUI.fastRenderValue.get() ? startY + 6F : AnimationUtils.animate(startY + 6F, startYAnim, (startYAnim - (startY + 5F) > 0 ? 0.65F : 0.55F) * RenderUtils.deltaTime * 0.025F);
                 endYAnim = NewGUI.fastRenderValue.get() ? startY + elementHeight - 6F : AnimationUtils.animate(startY + elementHeight - 6F, endYAnim, (endYAnim - (startY + elementHeight - 5F) < 0 ? 0.65F : 0.55F) * RenderUtils.deltaTime * 0.025F);
 
-                if (Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-                     dWheel = -1;
-                } else if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-                 	dWheel = 1;
-                }
-
-                ce.drawPanel(mouseX, mouseY, 230, 50, width - 260, height - 80, dWheel, accentColor);
+                ce.drawPanel(mouseX, mouseY, 230, 50, width - 260, height - 80, Mouse.getDWheel(), accentColor);
             }
             startY += elementHeight;
         }
