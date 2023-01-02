@@ -43,7 +43,7 @@ class Gapple : Module() {
                 if (!timer.hasTimePassed(delayValue.get().toLong()))
                     return
                 if (mc.thePlayer.health <= healthValue.get()){
-                    doEat(false)
+                    doEat(true)
                     timer.reset()
                 }
             }
