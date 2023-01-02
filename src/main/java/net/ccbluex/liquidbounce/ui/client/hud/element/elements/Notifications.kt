@@ -211,7 +211,7 @@ class Notification(message : String, type : Type, displayLength: Long) {
                 RenderUtils.customRounded(-x - 2F, -y, -x - 5F, -18F - y, 3F, 0F, 0F, 3F, when(type) {
                     Type.SUCCESS -> Color(80, 255, 80).rgb
                     Type.ENABLED -> Color(80, 255, 80).rgb
-                    Type DISABLED -> Color(255, 80, 80).rgb
+                    Type.DISABLED -> Color(255, 80, 80).rgb
                     Type.ERROR -> Color(255, 80, 80).rgb
                     Type.INFO -> Color(255, 255, 255).rgb
                     Type.WARNING -> Color(255, 255, 0).rgb
@@ -382,7 +382,7 @@ class Notification(message : String, type : Type, displayLength: Long) {
                         Type.SUCCESS -> Color(72 + 90, 210 + 30, 48 + 90, 255).rgb
                         Type.ERROR -> Color(227 + 20, 28 + 90, 28 + 90, 255).rgb
                         Type.ENABLED -> Color(72 + 90, 210 + 30, 48 + 90, 255).rgb
-                        Type.DISABLES -> Color(227 + 20, 28 + 90, 28 + 90, 255).rgb
+                        Type.DISABLED -> Color(227 + 20, 28 + 90, 28 + 90, 255).rgb
                         Type.WARNING -> Color(245 - 70, 212 - 70, 25, 255).rgb
                         Type.INFO -> Color(155, 155, 155, 255).rgb
                     })
