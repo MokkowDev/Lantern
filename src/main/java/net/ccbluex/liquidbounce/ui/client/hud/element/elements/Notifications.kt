@@ -281,9 +281,9 @@ class Notification(message : String, type : Type, displayLength: Long) {
 
                 GlStateManager.resetColor()
                 if (fadeState == FadeState.STAY && !stayTimer.hasTimePassed(displayTime))
-                    RenderUtils.drawRoundedRect(kek, -y, kek + (dist * if (stayTimer.hasTimePassed(displayTime)) 0F else ((displayTime - (System.currentTimeMillis() - stayTimer.time)).toFloat() / displayTime.toFloat())), -1F - y, roundedAmo, enumColor)
+                    RenderUtils.drawRect(kek, -y, kek + (dist * if (stayTimer.hasTimePassed(displayTime)) 0F else ((displayTime - (System.currentTimeMillis() - stayTimer.time)).toFloat() / displayTime.toFloat())), -1F - y, enumColor)
                 else if (fadeState == FadeState.IN)
-                    RenderUtils.drawRoundedRect(kek, -y, kek + dist, -1F - y, roundedAmo, enumColor)
+                    RenderUtils.drawRect(kek, -y, kek + dist, -1F - y, enumColor)
 
                 GlStateManager.resetColor()
                 Fonts.font40.drawString(message, -x + 2, -18F - y, -1)
@@ -321,8 +321,8 @@ class Notification(message : String, type : Type, displayLength: Long) {
                     Type.ERROR -> "Error!"
                     Type.WARNING -> "Warning!"
                     Type.INFO -> "Info"
-                }, -x + 2, -13F - y, enumColor)
-                Fonts.font40.drawString(message, -x + 2, -26F - y, -1)
+                }, -x + 2, -13.5F - y, enumColor)
+                Fonts.font40.drawString(message, -x + 2, -27F - y, -1)
             }
             "material" -> {
                 GlStateManager.resetColor()
