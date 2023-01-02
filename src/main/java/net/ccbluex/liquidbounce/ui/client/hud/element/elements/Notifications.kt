@@ -166,6 +166,7 @@ class Notification(message : String, type : Type, displayLength: Long) {
         val hAnimMode = parent.hAnimModeValue.get()
         val vAnimMode = parent.vAnimModeValue.get()
         val animSpeed = parent.animationSpeed.get()
+        val roundedAmo = parent.roundedMoment.get()
 
         val side = parent.side
         
@@ -260,12 +261,12 @@ class Notification(message : String, type : Type, displayLength: Long) {
                 if (blur) {
                     GL11.glTranslatef(-originalX, -originalY, 0F)
                     GL11.glPushMatrix()
-                    BlurUtils.blurAreaRounded(originalX + kek, originalY + -28F - y, originalX + -x + 8 + textLength, originalY + -y, roundedMoment.get(), strength)
+                    BlurUtils.blurAreaRounded(originalX + kek, originalY + -28F - y, originalX + -x + 8 + textLength, originalY + -y, roundedAmo, strength)
                     GL11.glPopMatrix()
                     GL11.glTranslatef(originalX, originalY, 0F)
                 } 
 
-                RenderUtils.drawRoundedRect(-x + 8 + textLength, -y, kek, -28F - y, roundedMoment.get(), backgroundColor.rgb)
+                RenderUtils.drawRoundedRect(-x + 8 + textLength, -y, kek, -28F - y, roundedAmo, backgroundColor.rgb)
 
                 GL11.glPushMatrix()
                 GlStateManager.disableAlpha()
@@ -280,9 +281,9 @@ class Notification(message : String, type : Type, displayLength: Long) {
 
                 GlStateManager.resetColor()
                 if (fadeState == FadeState.STAY && !stayTimer.hasTimePassed(displayTime))
-                    RenderUtils.drawRoundedRect(kek, -y, kek + (dist * if (stayTimer.hasTimePassed(displayTime)) 0F else ((displayTime - (System.currentTimeMillis() - stayTimer.time)).toFloat() / displayTime.toFloat())), -1F - y, roundedMoment.get(), enumColor)
+                    RenderUtils.drawRoundedRect(kek, -y, kek + (dist * if (stayTimer.hasTimePassed(displayTime)) 0F else ((displayTime - (System.currentTimeMillis() - stayTimer.time)).toFloat() / displayTime.toFloat())), -1F - y, roundedAmo, enumColor)
                 else if (fadeState == FadeState.IN)
-                    RenderUtils.drawRoundedRect(kek, -y, kek + dist, -1F - y, roundedMoment.get(), enumColor)
+                    RenderUtils.drawRoundedRect(kek, -y, kek + dist, -1F - y, roundedAmo, enumColor)
 
                 GlStateManager.resetColor()
                 Fonts.font40.drawString(message, -x + 2, -18F - y, -1)
