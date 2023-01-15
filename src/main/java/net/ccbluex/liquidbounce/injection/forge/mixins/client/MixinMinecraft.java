@@ -8,7 +8,7 @@ package net.ccbluex.liquidbounce.injection.forge.mixins.client;
 import de.enzaxd.viaforge.ViaForge;
 import de.enzaxd.viaforge.util.AttackOrder;
 import net.ccbluex.liquidbounce.LiquidBounce;
-import net ccbluex.liquidbounce.utils.TitleUtils;
+import net.ccbluex.liquidbounce.utils.TitleUtils;
 import net.ccbluex.liquidbounce.event.*;
 import net.ccbluex.liquidbounce.features.module.modules.combat.AutoClicker;
 import net.ccbluex.liquidbounce.features.module.modules.exploit.AbortBreaking;
