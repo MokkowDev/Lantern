@@ -63,7 +63,7 @@ class Text(x: Double = 10.0, y: Double = 10.0, scale: Float = 1F,
 
             text.displayString.set("%clientName%")
             text.shadow.set(true)
-            text.fontValue.set(Fonts.font30)
+            text.fontValue.set(Fonts.font35)
             text.setColor(Color(255, 255, 255))
 
             return text
@@ -239,7 +239,7 @@ class Text(x: Double = 10.0, y: Double = 10.0, scale: Float = 1F,
         }
 
         var FadeColor : Int = ColorUtils.fade(Color(redValue.get(), greenValue.get(), blueValue.get(), alphaValue.get()), 0, 100).rgb
-        var LanternColir : Int = ColorUtils.lantern(0, 100).rgb
+        var LanternColor : Int = ColorUtils.lantern(0, 100).rgb
         val LiquidSlowly = ColorUtils.LiquidSlowly(System.nanoTime(), 0, saturationValue.get(), brightnessValue.get())?.rgb
         var liquidSlowli : Int = LiquidSlowly!!
 

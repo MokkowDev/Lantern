@@ -77,7 +77,7 @@ open class Module : MinecraftInstance(), Listenable {
                     2 -> (if (value) LiquidBounce.tipSoundManager.enableSound else LiquidBounce.tipSoundManager.disableSound).asyncPlay(LiquidBounce.moduleManager.toggleVolume)
                 }
                 if (LiquidBounce.moduleManager.shouldNotify)
-                    LiquidBounce.hud.addNotification(Notification(if (value) "§rEnabled§r " + name else "§rDisabled§r " + name, if (value) Notification.Type.ENABLE else Notification.Type.DISABLED, 1000L))
+                    LiquidBounce.hud.addNotification(Notification(if (value) "§rEnabled§r " + name else "§rDisabled§r " + name, if (value) Notification.Type.ENABLED else Notification.Type.DISABLED, 1000L))
             }
 
             // Call on enabled or disabled
