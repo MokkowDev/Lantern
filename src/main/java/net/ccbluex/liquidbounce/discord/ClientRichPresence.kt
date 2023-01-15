@@ -91,8 +91,8 @@ class ClientRichPresence : MinecraftInstance() {
         builder.setStartTimestamp(timestamp)
 
         // Check assets contains logo and set logo
-        if (assets.containsKey("idk"))
-            builder.setLargeImage(assets["idk"], "using version: ${LiquidBounce.CLIENT_VERSION}")
+        if (assets.containsKey("lantern"))
+            builder.setLargeImage(assets["lantern"], "Playing on version: ${LiquidBounce.CLIENT_VERSION}")
 
         val serverData = mc.currentServerData
 
@@ -138,5 +138,6 @@ class ClientRichPresence : MinecraftInstance() {
         assets["mineplex"] = "mineplex"
         assets["idk"] = "idk"
         assets["playing"] = "playing"
+        assets["lantern"] = "lantern"
     }
 }

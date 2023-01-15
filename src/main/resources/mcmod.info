@@ -1,13 +1,13 @@
 [
   {
-    "modid": "liquidbounce",
-    "name": "LiquidBounce",
-    "description": "",
+    "modid": "lantern",
+    "name": "Lantern Client",
+    "description": "Utility client.",
     "version": "${version}",
     "mcversion": "${mcversion}",
-    "url": "https://liquidbounce.net",
+    "url": "https://lbplusplus.ga",
     "updateUrl": "",
-    "authorList": ["CCBlueX"],
+    "authorList": ["CCBlueX", "PlusPlusMC"],
     "credits": "",
     "logoFile": "",
     "screenshots": [],

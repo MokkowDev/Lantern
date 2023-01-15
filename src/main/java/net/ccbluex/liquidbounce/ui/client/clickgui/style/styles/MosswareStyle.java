@@ -35,10 +35,15 @@ public class MosswareStyle extends Style {
     private boolean mouseDown;
     public static int dWheel;
     private boolean rightMouseDown;
+    
+    private Color modifyAlpha(Color col, int alpha) {
+        return new Color(col.getRed(), col.getGreen(), col.getBlue(), alpha);
+    }
 
     @Override
     public void drawPanel(int mouseX, int mouseY, Panel panel) {
-    	RenderUtils.drawRoundedRect((float) panel.getX(), (float) panel.getY() - 3, (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 17, 1.6F, new Color(30,30,30,150).getRGB());
+    	RenderUtils.drawGradientSideways((float) panel.getX(), (float) panel.getY() - 3, (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 17, modifyAlpha(ClickGUI.generateColor(), 150).getRGB(), modifyAlpha(ClickGUI.generateColor().darker(), 150).getRGB());
+    // RenderUtils.drawRoundedRect((float) panel.getX(), (float) panel.getY() - 3, (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 17, 1.6F, new Color(30,30,30,150).getRGB());
          if(panel.getFade() > 0) {
             RenderUtils.drawRoundedRect((float) panel.getX(), (float) panel.getY() + 17, (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 19, 1.6F, new Color(30,30,30,150).getRGB());
             RenderUtils.drawRoundedRect((float) panel.getX(), (float) panel.getY() + 17 + panel.getFade(), (float) panel.getX() + panel.getWidth(), (float) panel.getY() + 19 + panel.getFade() + 5, 1.6F, new Color(30,30,30,150).getRGB());
@@ -79,7 +84,7 @@ public class MosswareStyle extends Style {
         final List<Value<?>> moduleValues = moduleElement.getModule().getValues();
 
         if(!moduleValues.isEmpty()) {
-            Fonts.fontSFUI35.drawStringWithShadow(">", moduleElement.getX() + moduleElement.getWidth() - 8, moduleElement.getY() + 5, RenderUtils.SkyRainbow(0, 0.9f, 1.0f));
+            Fonts.fontSFUI35.drawStringWithShadow(">", moduleElement.getX() + moduleElement.getWidth() - 8, moduleElement.getY() + 5, ClickGUI.generateColor().getRGB());
 
             if(moduleElement.isShowSettings()) {
                 if(moduleElement.getSettingsWidth() > 0F && moduleElement.slowlySettingsYPos > moduleElement.getY() + 6)

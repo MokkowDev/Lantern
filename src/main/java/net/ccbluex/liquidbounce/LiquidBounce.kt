@@ -37,7 +37,7 @@ object LiquidBounce {
 
     // Client information
     const val CLIENT_NAME = "Lantern"
-    const val CLIENT_VERSION = "0.1"
+    const val CLIENT_VERSION = "0.2"
     const val CLIENT_CREATOR = "CCBlueX, exit-scammed, PlusPlusMC"
     const val CLIENT_CLOUD = "https://mossware.github.io/LiquidCloud/LiquidBounce"
 

@@ -40,7 +40,7 @@ class Notifications(x: Double = 0.0, y: Double = 30.0, scale: Float = 1F,
     val barValue = BoolValue("Bar", true, { styleValue.get().equals("material", true) })
     val bgAlphaValue = IntegerValue("Background-Alpha", 120, 0, 255, { !styleValue.get().equals("material", true) })
 
-    val roundedMoment = FloatValue("Rounded-Amount", 2.4F, 0.01F, 25F, { styleValue.get().equals("roundedfull", true) })
+    val roundedMoment = FloatValue("Rounded-Amount", 2.4F, 0.01F, 8F, { styleValue.get().equals("roundedfull", true) })
 
     val blurValue = BoolValue("Blur", false, { !styleValue.get().equals("material", true) })
     val blurStrength = FloatValue("Strength", 0F, 0F, 30F, { !styleValue.get().equals("material", true) && blurValue.get() })

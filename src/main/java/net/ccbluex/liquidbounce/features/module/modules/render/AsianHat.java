@@ -37,7 +37,7 @@ import java.util.List;
 @ModuleInfo(name = "AsianHat", spacedName = "Asian Hat", description = "not your typical china hat", category = ModuleCategory.RENDER)
 public class AsianHat extends Module {
 
-    private final ListValue colorModeValue = new ListValue("Color", new String[] {"Custom", "Rainbow", "Sky", "LiquidSlowly", "Fade", "Mixer"}, "Custom");
+    private final ListValue colorModeValue = new ListValue("Color", new String[] {"Custom", "Rainbow", "Sky", "LiquidSlowly", "Fade", "Mixer", "Lantern"}, "Custom");
 	private final IntegerValue colorRedValue = new IntegerValue("Red", 255, 0, 255);
 	private final IntegerValue colorGreenValue = new IntegerValue("Green", 255, 0, 255);
 	private final IntegerValue colorBlueValue = new IntegerValue("Blue", 255, 0, 255);
@@ -187,6 +187,8 @@ public class AsianHat extends Module {
 				return ColorUtils.LiquidSlowly(System.nanoTime(), index, saturationValue.get(), brightnessValue.get());
 			case "Mixer":
 				return ColorMixer.getMixedColor(index, mixerSecondsValue.get());
+			case "Lantern":
+			    return ColorUtils.lantern(index, 100);
 			default:
 				return ColorUtils.fade(new Color(colorRedValue.get(), colorGreenValue.get(), colorBlueValue.get()), index, 100);
 		}

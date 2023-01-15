@@ -59,7 +59,7 @@ class Target : Element() {
     val showWithChatOpen = BoolValue("Show-ChatOpen", true)
     val resetBar = BoolValue("ResetBarWhenHiding", false)
 
-    val colorModeValue = ListValue("Color", arrayOf("Custom", "Rainbow", "Sky", "Slowly", "Fade", "Mixer", "Health"), "Health")
+    val colorModeValue = ListValue("Color", arrayOf("Custom", "Rainbow", "Sky", "Slowly", "Fade", "Mixer", "Lantern", "Health"), "Health")
     val redValue = IntegerValue("Red", 252, 0, 255)
     val greenValue = IntegerValue("Green", 96, 0, 255)
     val blueValue = IntegerValue("Blue", 66, 0, 255)
@@ -113,6 +113,7 @@ class Target : Element() {
             "Fade" -> ColorUtils.fade(Color(redValue.get(), greenValue.get(), blueValue.get()), 0, 100)
             "Health" -> if (actualTarget != null) BlendUtils.getHealthColor(actualTarget.health, actualTarget.maxHealth) else Color.green
             "Mixer" -> ColorMixer.getMixedColor(0, waveSecondValue.get())
+            "Lantern" -> ColorUtils.lantern(0, 100)
             else -> ColorUtils.LiquidSlowly(System.nanoTime(), 0, saturationValue.get(), brightnessValue.get())!!
         }
 

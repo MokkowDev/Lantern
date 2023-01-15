@@ -7,13 +7,24 @@ uniform vec2 iResolution;
 #define X uv.x*32.
 #define Y -uv.y*32.
 
-void main( void ) {
-	vec2 uv = ( gl_FragCoord.xy-.5* iResolution.xy )/iResolution.y-.5 ;
-	float t = iTime * 0.1;
+void main( out vec4 outColor ) {
+
+	outColor = vec4(0.);
+	vec2 st = gl_FragCoord.xy / iResolution.y;
 	
-	float c = S(X/10.+Y/15.)*C(X/20.+t+cos(.05*t+Y/5.));
-	vec3 a_color = vec3(.8, .8, .8) + c;
-	vec3 b_color = vec3(.8, .8, .8);
-	vec3 color = mix(a_color, b_color, 0.7);
-	gl_FragColor = vec4((floor(color * 4.0) / 30.0), 1.0 );
+	vec2 b = vec2(0,.1), p;
+	mat2 rotation;
+	
+	for (float i=.10; i<4.1111111111111 ;++i) {
+			rotation = mat2(cos(i + vec4(0,33,11,0)));
+			
+			st = st * (i);
+			
+			st.y += iTime * (0.016);
+			
+			st = rotation * (fract((st)*rotation)-.5);
+			
+			outColor += 0.001/ length(clamp(st,-b,b)-st);
+	}
+	gl_FragColor(outColor,1.0);
 }

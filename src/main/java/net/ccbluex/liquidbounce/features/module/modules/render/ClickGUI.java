@@ -39,7 +39,7 @@ public class ClickGUI extends Module {
     public final FloatValue scaleValue = new FloatValue("Scale", 1F, 0.4F, 2F);
     public final IntegerValue maxElementsValue = new IntegerValue("MaxElements", 15, 1, 20);
 
-    private static final ListValue colorModeValue = new ListValue("Color", new String[] {"Custom", "Sky", "Rainbow", "LiquidSlowly", "Fade", "Mixer"}, "Custom");
+    private static final ListValue colorModeValue = new ListValue("Color", new String[] {"Custom", "Sky", "Rainbow", "LiquidSlowly", "Fade", "Mixer", "Lantern"}, "Custom");
     private static final IntegerValue colorRedValue = new IntegerValue("Red", 0, 0, 255);
     private static final IntegerValue colorGreenValue = new IntegerValue("Green", 160, 0, 255);
     private static final IntegerValue colorBlueValue = new IntegerValue("Blue", 255, 0, 255);
@@ -76,6 +76,9 @@ public class ClickGUI extends Module {
             case "mixer":
                 c = ColorMixer.getMixedColor(0, mixerSecondsValue.get());
                 break;
+            case "lantern":
+                c = ColorUtils.lantern(0, 100);
+             break;
         }
         return c;
     }

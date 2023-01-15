@@ -63,7 +63,7 @@ class Text(x: Double = 10.0, y: Double = 10.0, scale: Float = 1F,
 
             text.displayString.set("%clientName%")
             text.shadow.set(true)
-            text.fontValue.set(Fonts.font40)
+            text.fontValue.set(Fonts.font30)
             text.setColor(Color(255, 255, 255))
 
             return text
@@ -85,7 +85,7 @@ class Text(x: Double = 10.0, y: Double = 10.0, scale: Float = 1F,
     private val bggreenValue = IntegerValue("Background-Green", 0, 0, 255)
     private val bgblueValue = IntegerValue("Background-Blue", 0, 0, 255)
     private val bgalphaValue = IntegerValue("Background-Alpha", 120, 0, 255)
-    private val rainbowList = ListValue("Rainbow", arrayOf("Off", "CRainbow", "Sky", "LiquidSlowly", "Fade", "Mixer"), "Off")
+    private val rainbowList = ListValue("Rainbow", arrayOf("Off", "CRainbow", "Sky", "LiquidSlowly", "Fade", "Mixer", "Lantern"), "Off")
     private val saturationValue = FloatValue("Saturation", 0.9f, 0f, 1f)
     private val brightnessValue = FloatValue("Brightness", 1f, 0f, 1f)
     private val cRainbowSecValue = IntegerValue("Seconds", 2, 1, 10)
@@ -239,6 +239,7 @@ class Text(x: Double = 10.0, y: Double = 10.0, scale: Float = 1F,
         }
 
         var FadeColor : Int = ColorUtils.fade(Color(redValue.get(), greenValue.get(), blueValue.get(), alphaValue.get()), 0, 100).rgb
+        var LanternColir : Int = ColorUtils.lantern(0, 100).rgb
         val LiquidSlowly = ColorUtils.LiquidSlowly(System.nanoTime(), 0, saturationValue.get(), brightnessValue.get())?.rgb
         var liquidSlowli : Int = LiquidSlowly!!
 
@@ -257,6 +258,7 @@ class Text(x: Double = 10.0, y: Double = 10.0, scale: Float = 1F,
                     "LiquidSlowly" -> ColorUtils.LiquidSlowly(System.nanoTime(), i * distanceValue.get(), saturationValue.get(), brightnessValue.get())!!.rgb
                     "Mixer" -> ColorMixer.getMixedColor(i * distanceValue.get(), cRainbowSecValue.get()).rgb
                     "Fade" -> ColorUtils.fade(Color(redValue.get(), greenValue.get(), blueValue.get()), i * distanceValue.get(), 100).rgb
+                    "Lantern" -> ColorUtils.lantern(i * distanceValue.get(), 100).rgb
                     else -> color
                 },
                 when (rainbowType) {
@@ -265,6 +267,7 @@ class Text(x: Double = 10.0, y: Double = 10.0, scale: Float = 1F,
                     "LiquidSlowly" -> ColorUtils.LiquidSlowly(System.nanoTime(), (i + 1) * distanceValue.get(), saturationValue.get(), brightnessValue.get())!!.rgb
                     "Mixer" -> ColorMixer.getMixedColor((i + 1) * distanceValue.get(), cRainbowSecValue.get()).rgb
                     "Fade" -> ColorUtils.fade(Color(redValue.get(), greenValue.get(), blueValue.get()), (i + 1) * distanceValue.get(), 100).rgb
+                    "Lantern" -> ColorUtils.lantern((i + 1) * distanceValue.get(), 100).rgb
                     else -> color
                 })
             }
@@ -276,6 +279,7 @@ class Text(x: Double = 10.0, y: Double = 10.0, scale: Float = 1F,
             "LiquidSlowly" -> liquidSlowli
             "Fade" -> FadeColor
             "Mixer" -> mixerColor
+            "Lantern" -> LanternColor
             else -> color
         }, shadow.get())
 
@@ -288,6 +292,7 @@ class Text(x: Double = 10.0, y: Double = 10.0, scale: Float = 1F,
                             "LiquidSlowly" -> liquidSlowli
                             "Fade" -> FadeColor
                             "Mixer" -> mixerColor
+                            "Lantern" -> LanternColor
                     else -> color
                 }, shadow.get()) 
             if (suggestion.size > 0) {
