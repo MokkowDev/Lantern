@@ -1,7 +1,7 @@
 <img width="120" height="120" align="left" style="float: left; margin: 0 10px 0 0;" alt="lantern client image" src="src/main/resources/assets/minecraft/liquidbounce%2B/big.png">
 
 # Lantern Client
-Just a client
+LiquidBounce Custom Client
 
 ## Credits
 [LiquidBounce+](https://github.com/WYSI-Foundation/LiquidBouncePlus) - Base \
