@@ -11,6 +11,7 @@ import net.ccbluex.liquidbounce.features.module.modules.movement.TargetStrafe;
 import net.ccbluex.liquidbounce.event.MoveEvent;
 import net.ccbluex.liquidbounce.features.module.modules.movement.speeds.SpeedMode;
 import net.ccbluex.liquidbounce.utils.MovementUtils;
+import net.minecraft.potion.Potion;
 
 public class HypixelStrafeLess extends SpeedMode {
 
@@ -39,7 +40,7 @@ public class HypixelStrafeLess extends SpeedMode {
             if (mc.thePlayer.onGround) {
                 if(MovementUtils.isMoving()) mc.thePlayer.jump();
                 if(speed.strafeOnDmg.get() && mc.thePlayer.hurtTime > 8) MovementUtils.strafe();
-                MovementUtils.strafe(moveSpeed);
+                MovementUtils.strafe((float) moveSpeed);
             }  else if(!mc.thePlayer.onGround) {
             	// hank
            }
