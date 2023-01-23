@@ -72,7 +72,7 @@ class ScoreboardElement(x: Double = 5.0, y: Double = 0.0, scale: Float = 1F,
     private val bgRoundedValue = BoolValue("Rounded", false)
     private val roundStrength = FloatValue("Rounded-Strength", 5F, 0F, 30F, { bgRoundedValue.get() })
 
-    private val rectColorModeValue = ListValue("Color", arrayOf("Custom", "Rainbow", "LiquidSlowly", "Fade", "Sky", "Mixer"), "Custom")
+    private val rectColorModeValue = ListValue("Color", arrayOf("Custom", "Rainbow", "LiquidSlowly", "Fade", "Sky", "Mixer", "Lantern"), "Custom")
     
     private val rectColorRedValue = IntegerValue("Red", 0, 0, 255)
     private val rectColorGreenValue = IntegerValue("Green", 111, 0, 255)
@@ -179,6 +179,7 @@ class ScoreboardElement(x: Double = 5.0, y: Double = 0.0, scale: Float = 1F,
         val l1 = if (side.horizontal == Side.Horizontal.LEFT) {maxWidth + 3} else {-maxWidth - 3}
 
         var FadeColor : Int = ColorUtils.fade(Color(rectColorRedValue.get(), rectColorGreenValue.get(), rectColorBlueValue.get(), rectColorBlueAlpha.get()), 0, 100).rgb
+        var LanternColor : Int = ColorUtils.lantern(0, 100).rgb
         val LiquidSlowly = ColorUtils.LiquidSlowly(System.nanoTime(), 0, saturationValue.get(), brightnessValue.get())?.rgb
         var liquidSlowli : Int = LiquidSlowly!!
 
@@ -306,6 +307,7 @@ class ScoreboardElement(x: Double = 5.0, y: Double = 0.0, scale: Float = 1F,
                     "liquidslowly" -> liquidSlowli
                     "fade" -> FadeColor
                     "mixer" -> mixerColor
+                    "lantern" -> LanternColor
                     else -> rectCustomColor
                 }
 
@@ -361,6 +363,7 @@ class ScoreboardElement(x: Double = 5.0, y: Double = 0.0, scale: Float = 1F,
                                 Color(rectColorRedValue.get(), rectColorGreenValue.get(), rectColorBlueValue.get(), rectColorBlueAlpha.get()), 
                                 z * delayValue.get(), 
                                 100).rgb
+                            rectColorMode.equals("Lantern", ignoreCase = true) -> ColorUtils.lantern(z * delayValue.get(), 100).rgb
                             rectColorMode.equals("Mixer", ignoreCase = true) -> ColorMixer.getMixedColor(z * delayValue.get(), cRainbowSecValue.get()).rgb
                             else -> rectCustomColor
                         }

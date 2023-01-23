@@ -40,7 +40,7 @@ class TabGUI(x: Double = 5.0, y: Double = 25.0) : Element(x = x, y = y) {
     private val greenValue = IntegerValue("Rectangle Green", 148, 0, 255)
     private val blueValue = IntegerValue("Rectangle Blue", 255, 0, 255)
     private val alphaValue = IntegerValue("Rectangle Alpha", 140, 0, 255)
-    private val rectangleRainbow = ListValue("Rectangle Rainbow", arrayOf("Off", "Normal", "CRainbow", "OldRainbow", "Sky", "Fade"), "Off")
+    private val rectangleRainbow = ListValue("Rectangle Rainbow", arrayOf("Off", "Normal", "CRainbow", "OldRainbow", "Sky", "Fade", "Lantern"), "Off")
     private val backgroundRedValue = IntegerValue("Background Red", 0, 0, 255)
     private val backgroundGreenValue = IntegerValue("Background Green", 0, 0, 255)
     private val backgroundBlueValue = IntegerValue("Background Blue", 0, 0, 255)
@@ -51,7 +51,7 @@ class TabGUI(x: Double = 5.0, y: Double = 25.0) : Element(x = x, y = y) {
     private val borderGreenValue = IntegerValue("Border Green", 0, 0, 255)
     private val borderBlueValue = IntegerValue("Border Blue", 0, 0, 255)
     private val borderAlphaValue = IntegerValue("Border Alpha", 150, 0, 255)
-    private val borderRainbow = ListValue("Border Rainbow", arrayOf("Off", "Normal", "CRainbow", "OldRainbow", "Sky", "Fade"), "Off")
+    private val borderRainbow = ListValue("Border Rainbow", arrayOf("Off", "Normal", "CRainbow", "OldRainbow", "Sky", "Fade", "Lantern"), "Off")
     private val skySaturationValue = FloatValue("Sky-Saturation", 0.9f, 0f, 1f)
     private val skyBrightnessValue = FloatValue("Sky-Brightness", 1f, 0f, 1f)
     private val cRainbowSecValue = IntegerValue("CRainbow-Seconds", 2, 1, 10)
@@ -132,6 +132,7 @@ class TabGUI(x: Double = 5.0, y: Double = 25.0) : Element(x = x, y = y) {
                     "OldRainbow" -> RenderUtils.getNormalRainbow(0, oldRainbowSaturationValue.get(), oldRainbowBrightnessValue.get())
                     "Sky" -> RenderUtils.SkyRainbow(0, skySaturationValue.get(), skyBrightnessValue.get())
                     "Fade" -> ColorUtils.fade(borderColor, 0, 100).rgb
+                    "Lantern" -> ColorUtils.lantern(0, 100).rgb
                     else -> borderColor.rgb
                 })
             }
@@ -144,6 +145,7 @@ class TabGUI(x: Double = 5.0, y: Double = 25.0) : Element(x = x, y = y) {
                 "OldRainbow" -> RenderUtils.getNormalRainbow(0, oldRainbowSaturationValue.get(), oldRainbowBrightnessValue.get())
                 "Sky" -> RenderUtils.SkyRainbow(0, skySaturationValue.get(), skyBrightnessValue.get())
                 "Fade" -> ColorUtils.fade(Color(redValue.get(), greenValue.get(), blueValue.get(), alphaValue.get()), 0, 100).rgb
+                "Lantern" -> ColorUtils.lantern(0, 100)
                 else -> Color(redValue.get(), greenValue.get(), blueValue.get(), alphaValue.get()).rgb
             }
 

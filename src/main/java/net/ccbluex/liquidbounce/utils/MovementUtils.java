@@ -81,6 +81,10 @@ public final class MovementUtils extends MinecraftInstance {
     public static boolean hasMotion() {
         return mc.thePlayer.motionX != 0D && mc.thePlayer.motionZ != 0D && mc.thePlayer.motionY != 0D;
     }
+    
+    public double getXZMotion() {
+		return Math.hypot(mc.thePlayer.motionX, mc.thePlayer.motionZ);
+	}
 
     public static void strafe(final float speed) {
         if(!isMoving())

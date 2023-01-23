@@ -35,6 +35,7 @@ class AntiAFK : Module() {
     private val moveValue = BoolValue("Move", true)
     private val rotateValue = BoolValue("Rotate", true)
     private val swingValue = BoolValue("Swing", true)
+    private val sneakValue = BoolValue("Sneak", false)
 
     private var shouldMove = false
     private var randomTimerDelay = 500L

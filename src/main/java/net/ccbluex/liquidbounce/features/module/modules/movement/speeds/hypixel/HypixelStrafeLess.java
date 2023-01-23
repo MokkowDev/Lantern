@@ -30,14 +30,19 @@ public class HypixelStrafeLess extends SpeedMode {
         if(speed == null) return;
 
         if(MovementUtils.isMoving() && !(mc.thePlayer.isInWater() || mc.thePlayer.isInLava()) && !mc.gameSettings.keyBindJump.isKeyDown()) {
-            double moveSpeed = Math.max(MovementUtils.getBaseMoveSpeed() * speed.baseStrengthValue.get(), MovementUtils.getSpeed());
+            double moveSpeed = Math.max(MovementUtils.getBaseMoveSpeed() * 0.23, MovementUtils.getSpeed());
+
+        if(mc.thePlayer.isPotionActive(Potion.moveSpeed)) {
+			moveSpeed += 0.083 + mc.thePlayer.getActivePotionEffect(Potion.moveSpeed).getAmplifier() * 0.063;
+        }
 
             if (mc.thePlayer.onGround) {
                 if(MovementUtils.isMoving()) mc.thePlayer.jump();
-                if (speed.recalcValue.get()) moveSpeed = Math.max(MovementUtils.getBaseMoveSpeed() * speed.baseStrengthValue.get(), MovementUtils.getSpeed());
-                if(speed.strafeOnDmg.get() && mc.thePlayer.hurtTime > 2) MovementUtils.strafe();
-                moveSpeed *= speed.moveSpeedValue.get();
-            }  
+                if(speed.strafeOnDmg.get() && mc.thePlayer.hurtTime > 8) MovementUtils.strafe();
+                MovementUtils.strafe(moveSpeed);
+            }  else if(!mc.thePlayer.onGround) {
+            	// hank
+           }
         } 
     }
 

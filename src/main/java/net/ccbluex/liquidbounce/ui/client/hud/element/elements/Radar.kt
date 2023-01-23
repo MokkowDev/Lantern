@@ -47,7 +47,7 @@ class Radar(x: Double = 5.0, y: Double = 130.0) : Element(x, y) {
     private val exhiValue = BoolValue("Use Exhi Rect", true)
 
     private val lineValue = BoolValue("Line", false)
-    private val rainbowList = ListValue("Line-Rainbow", arrayOf("Off", "CRainbow", "Sky", "LiquidSlowly", "Fade", "Mixer"), "Off")
+    private val rainbowList = ListValue("Line-Rainbow", arrayOf("Off", "CRainbow", "Sky", "LiquidSlowly", "Fade", "Mixer", "Lantern"), "Off")
 
     private val redValue = IntegerValue("Line-Red", 255, 0, 255)
     private val greenValue = IntegerValue("Line-Green", 255, 0, 255)
@@ -118,6 +118,7 @@ class Radar(x: Double = 5.0, y: Double = 130.0) : Element(x, y) {
                     "LiquidSlowly" -> ColorUtils.LiquidSlowly(System.nanoTime(), i * distanceValue.get(), saturationValue.get(), brightnessValue.get())!!.rgb
                     "Mixer" -> ColorMixer.getMixedColor(i * distanceValue.get(), cRainbowSecValue.get()).rgb
                     "Fade" -> ColorUtils.fade(Color(redValue.get(), greenValue.get(), blueValue.get()), i * distanceValue.get(), 100).rgb
+                    "Lantern" -> ColorUtils.lantern(i * distanceValue.get(), 100).rgb
                     else -> cColor
                 },
                 when (rainbowType) {
@@ -126,6 +127,7 @@ class Radar(x: Double = 5.0, y: Double = 130.0) : Element(x, y) {
                     "LiquidSlowly" -> ColorUtils.LiquidSlowly(System.nanoTime(), (i + 1) * distanceValue.get(), saturationValue.get(), brightnessValue.get())!!.rgb
                     "Mixer" -> ColorMixer.getMixedColor((i + 1) * distanceValue.get(), cRainbowSecValue.get()).rgb
                     "Fade" -> ColorUtils.fade(Color(redValue.get(), greenValue.get(), blueValue.get()), (i + 1) * distanceValue.get(), 100).rgb
+                    "Lantern" -> ColorUtils.lantern((i + 1) * distanceValue.get(), 100).rgb
                     else -> cColor
                 })
             }

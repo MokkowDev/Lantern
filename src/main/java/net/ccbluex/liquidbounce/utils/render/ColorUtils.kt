@@ -119,7 +119,7 @@ object ColorUtils {
     @JvmStatic
     fun lantern(index: Int, count: Int): Color {
         val hsb = FloatArray(3)
-        Color.RGBtoHSB(246, 235, 185, hsb)
+        Color.RGBtoHSB(246, 235, 110, hsb)
         var brightness =
             abs(((System.currentTimeMillis() % 2000L).toFloat() / 1000.0f + index.toFloat() / count.toFloat() * 2.0f) % 2.0f - 1.0f)
         brightness = 0.5f + 0.5f * brightness

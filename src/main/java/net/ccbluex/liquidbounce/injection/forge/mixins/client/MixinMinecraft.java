@@ -233,7 +233,7 @@ public abstract class MixinMinecraft {
     private void clickMouse(CallbackInfo callbackInfo) {
         CPSCounter.registerClick(CPSCounter.MouseButton.LEFT);
 
-        if (Patcher.noHitDelay.get() || LiquidBounce.moduleManager.getModule(AutoClicker.class).getState())
+        if (LiquidBounce.moduleManager.getModule(AutoClicker.class).getState() || LiquidBounce.moduleManager.getModule(NoClickDelay.class).getState())
             leftClickCounter = 0;
     }
 
@@ -317,6 +317,6 @@ public abstract class MixinMinecraft {
      */
     @ModifyConstant(method = "getLimitFramerate", constant = @Constant(intValue = 30))
     public int getLimitFramerate(int constant) {
-        return 60;
+        return 30;
     }
 }
