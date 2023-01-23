@@ -22,6 +22,8 @@ class AutoTool : Module() {
     private val silentValue = BoolValue("Silent", false)
     private val ticksValue = IntegerValue("SilentTicks", 10, 1, 20)
 
+    private var silentSlot = 0
+
     @EventTarget
     fun onClick(event: ClickBlockEvent) {
         switchSlot(event.clickedBlock ?: return)

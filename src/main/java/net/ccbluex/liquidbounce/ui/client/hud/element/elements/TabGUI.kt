@@ -145,7 +145,7 @@ class TabGUI(x: Double = 5.0, y: Double = 25.0) : Element(x = x, y = y) {
                 "OldRainbow" -> RenderUtils.getNormalRainbow(0, oldRainbowSaturationValue.get(), oldRainbowBrightnessValue.get())
                 "Sky" -> RenderUtils.SkyRainbow(0, skySaturationValue.get(), skyBrightnessValue.get())
                 "Fade" -> ColorUtils.fade(Color(redValue.get(), greenValue.get(), blueValue.get(), alphaValue.get()), 0, 100).rgb
-                "Lantern" -> ColorUtils.lantern(0, 100)
+                "Lantern" -> ColorUtils.lantern(0, 100).rgb
                 else -> Color(redValue.get(), greenValue.get(), blueValue.get(), alphaValue.get()).rgb
             }
 
