@@ -71,7 +71,6 @@ public class NewUi extends GuiScreen {
             if (ce.getFocused())
                 ce.handleMouseRelease(-1, -1, 0, 0, 0, 0, 0);
         }
-        dWheel = 0;
         Keyboard.enableRepeatEvents(false);
     }
 
