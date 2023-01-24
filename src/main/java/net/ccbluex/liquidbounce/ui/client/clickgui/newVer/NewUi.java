@@ -54,11 +54,8 @@ public class NewUi extends GuiScreen {
 
     private float fading = 0F;
 
-    public int dWheel = 0;
-
     public void initGui() {
         Keyboard.enableRepeatEvents(true);
-        dWheel = 0;
         for (CategoryElement ce : categoryElements) {
             for (ModuleElement me : ce.getModuleElements()) {
                 if (me.listeningKeybind())
@@ -122,14 +119,8 @@ public class NewUi extends GuiScreen {
         else
             Fonts.fontLarge.drawString(mc.thePlayer.getGameProfile().getName(), 100, 78 - Fonts.fontLarge.FONT_HEIGHT + 15, -1);
 
-        if (Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
-             dWheel = -1;
-        } else if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
-         	dWheel = 1;
-        }
-
         if (searchElement.drawBox(mouseX, mouseY, accentColor)) {
-            searchElement.drawPanel(mouseX, mouseY, 230, 50, width - 260, height - 80, dWheel, categoryElements, accentColor);
+            searchElement.drawPanel(mouseX, mouseY, 230, 50, width - 260, height - 80, Mouse.getDWheel(), categoryElements, accentColor);
             return;
         }
 

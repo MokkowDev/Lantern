@@ -26,12 +26,11 @@ public class HypixelStrafeLess extends SpeedMode {
 
     @Override
     public void onUpdate() {
-        mc.timer.timerSpeed = 1F;
         final Speed speed = LiquidBounce.moduleManager.getModule(Speed.class);
         if(speed == null) return;
 
         if(MovementUtils.isMoving() && !(mc.thePlayer.isInWater() || mc.thePlayer.isInLava()) && !mc.gameSettings.keyBindJump.isKeyDown()) {
-            double moveSpeed = Math.max(MovementUtils.getBaseMoveSpeed() * 0.23, MovementUtils.getSpeed());
+            double moveSpeed = Math.max(MovementUtils.getBaseMoveSpeed() + 0.22, MovementUtils.getSpeed());
 
         if(mc.thePlayer.isPotionActive(Potion.moveSpeed)) {
 			moveSpeed += 0.083 + mc.thePlayer.getActivePotionEffect(Potion.moveSpeed).getAmplifier() * 0.063;
@@ -40,7 +39,7 @@ public class HypixelStrafeLess extends SpeedMode {
             if (mc.thePlayer.onGround) {
                 if(MovementUtils.isMoving()) mc.thePlayer.jump();
                 if(speed.strafeOnDmg.get() && mc.thePlayer.hurtTime > 8) MovementUtils.strafe();
-                MovementUtils.strafe((float) moveSpeed);
+                MovementUtils.strafe((float) moveSpeed); //moment
             }  else if(!mc.thePlayer.onGround) {
             	// hank
            }
@@ -57,7 +56,7 @@ public class HypixelStrafeLess extends SpeedMode {
         }
 
         if(mc.thePlayer.onGround && speed.fastFall.get() && Math.abs(event.getY()) < 0.005) {
-        	event.setY(mc.thePlayer.motionY = -0.16);
+        	event.setY(mc.thePlayer.motionY = -0.14);
         }
     }
 }
