@@ -293,6 +293,9 @@ class KillAura : Module() {
         prevTargetEntities.clear()
         attackTimer.reset()
         clicks = 0
+        
+        if(autoBlockModeValue.get().equals("rightclick", true))
+            mc.gameSettings.keyBindUseItem.pressed = false
 
         stopBlocking()
         if (verusBlocking && !blockingStatus && !mc.thePlayer.isBlocking) {

@@ -30,10 +30,10 @@ public class HypixelStrafeLess extends SpeedMode {
         if(speed == null) return;
 
         if(MovementUtils.isMoving() && !(mc.thePlayer.isInWater() || mc.thePlayer.isInLava()) && !mc.gameSettings.keyBindJump.isKeyDown()) {
-            double moveSpeed = Math.max(MovementUtils.getBaseMoveSpeed() + 0.22, MovementUtils.getSpeed());
+            double moveSpeed = Math.max(MovementUtils.getBaseMoveSpeed() + 0.20, MovementUtils.getSpeed());
 
         if(mc.thePlayer.isPotionActive(Potion.moveSpeed)) {
-			moveSpeed += 0.083 + mc.thePlayer.getActivePotionEffect(Potion.moveSpeed).getAmplifier() * 0.063;
+			moveSpeed += 0.08 + mc.thePlayer.getActivePotionEffect(Potion.moveSpeed).getAmplifier() * 0.063;
         }
 
             if (mc.thePlayer.onGround) {
@@ -56,7 +56,7 @@ public class HypixelStrafeLess extends SpeedMode {
         }
 
         if(mc.thePlayer.onGround && speed.fastFall.get() && Math.abs(event.getY()) < 0.005) {
-        	event.setY(mc.thePlayer.motionY = -0.14);
+        	event.setY(mc.thePlayer.motionY = -0.11);
         }
     }
 }

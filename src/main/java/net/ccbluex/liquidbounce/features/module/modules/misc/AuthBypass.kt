@@ -49,7 +49,7 @@ class AuthBypass : Module() {
                 mc.netHandler.addToSendQueue(packet)
             }
             packets.clear()
-            LiquidBounce.hud.addNotification(Notification("Authentication bypassed.", Notification.Type.INFO))
+            LiquidBounce.hud.addNotification(Notification("Captcha bypassed lmao.", Notification.Type.INFO))
         }
     }
 
@@ -122,6 +122,12 @@ class AuthBypass : Module() {
                         click(windowId, slot, item)
                     }
                 }
+                
+                "laggynetwork" -> { // glass
+                    if (itemName.contains("VERIFY", ignoreCase = false)) {
+                        click(windowId, slot, item)
+                    }
+                }
 
                 // the new item check in redesky
                 else -> {
@@ -135,9 +141,9 @@ class AuthBypass : Module() {
         if (packet is S2DPacketOpenWindow) {
             val windowName = packet.windowTitle.unformattedText
             if (packet.slotCount == 27 && packet.guiId.contains("container", ignoreCase = true)
-                && windowName.startsWith("Clique", ignoreCase = true)) {
+                && windowName.startsWith("Click", ignoreCase = true)) {
                 type = when {
-                    windowName.contains("bloco", ignoreCase = true) -> "skull"
+                    windowName.contains("green glass", ignoreCase = true) -> "laggynetwork"
                     else -> {
                         val splited = windowName.split(" ")
                         var str = splited[splited.size - 1].replace(".", "").toLowerCase()
