@@ -8,8 +8,8 @@ LiquidBounce Custom Client
 [ViaForge](https://github.com/RejectedVia/ViaForge) - Version switcher
 
 ### Download
-Want to download but no github account? Now you can use this site to download beta version of lantern (for now)
-[Click here](https://lantern.ilovecatboys.ml)
+Now you can download Lantern client from LiquidBounce++ site! 
+[Click here](https://lbplusplus.ga) to download.
 
 ### LiquidBounce's contact info
 Website: https://liquidbounce.net \
