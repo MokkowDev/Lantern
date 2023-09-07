@@ -38,9 +38,8 @@ Do the above and share your source code with everyone; just like we do.
 Lantern is using Gradle, so make sure that it is installed properly. Instructions can be found on [Gradle's website](https://gradle.org/install/).
 1. Clone the repository using `git clone https://github.com/MokkowDev/Lantern`. 
 2. CD into the local repository folder.
-4. Depending on which IDE you are using execute either of the following commands:
-   ***Recommended: IntelliJ***
-    - For IntelliJ: `gradlew setupDevWorkspace idea genIntellijRuns build`
+3. Depending on which IDE you are using execute either of the following commands:
+    - For IntelliJ: `gradlew setupDevWorkspace idea genIntellijRuns build` (**Recommended**)
     - For Eclipse: `gradlew setupDevWorkspace eclipse build`
 
     (you can add `-debug` right after `gradlew` if you want to enable debug logging.)
