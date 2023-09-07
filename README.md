@@ -1,15 +1,14 @@
 <img width="120" height="120" align="left" style="float: left; margin: 0 10px 0 0;" alt="lantern client image" src="src/main/resources/assets/minecraft/liquidbounce%2B/big.png">
 
 # Lantern Client
-LiquidBounce Custom Client
+A random client lol
 
 ## Credits
-[LiquidBounce+](https://github.com/WYSI-Foundation/LiquidBouncePlus) - Base \
-[ViaForge](https://github.com/RejectedVia/ViaForge) - Version switcher
+LiquidBounce+ - Base \
+[ViaForge](https://github.com/ViaVersion/ViaForge) - Version switcher
 
 ### Download
-Now you can download Lantern client from LiquidBounce++ site! 
-[Click here](https://lbplusplus.ga) to download.
+Right now you can't actually download Lantern without a github account, please create one and download it from the [Action](https://github.com/MokkowDev/Lantern/actions) tab.
 
 ### LiquidBounce's contact info
 Website: https://liquidbounce.net \
@@ -37,15 +36,16 @@ Do the above and share your source code with everyone; just like we do.
 
 ## Setting up a Workspace
 Lantern is using Gradle, so make sure that it is installed properly. Instructions can be found on [Gradle's website](https://gradle.org/install/).
-1. Clone the repository using `git clone https://github.com/PlusPlusMC/Lantern`. 
+1. Clone the repository using `git clone https://github.com/MokkowDev/Lantern`. 
 2. CD into the local repository folder.
 4. Depending on which IDE you are using execute either of the following commands:
+   ***Recommended: IntelliJ***
     - For IntelliJ: `gradlew setupDevWorkspace idea genIntellijRuns build`
     - For Eclipse: `gradlew setupDevWorkspace eclipse build`
 
     (you can add `-debug` right after `gradlew` if you want to enable debug logging.)
-5. Open the folder as a Gradle project in your IDE.
-6. Select the default run configuration.
+6. Open the folder as a Gradle project in your IDE.
+7. Select the default run configuration.
 
 ## Additional libraries
 ### Mixins
